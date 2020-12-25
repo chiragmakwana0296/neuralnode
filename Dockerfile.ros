@@ -49,7 +49,6 @@ COPY ./scripts/ros-app.launch /
 EXPOSE 11311
 EXPOSE 19997
 
-WORKDIR /root/catkin_ws
+WORKDIR /
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["bash source /entrypoint.sh"]
 

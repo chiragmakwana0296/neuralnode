@@ -1,3 +1,0 @@
-<launch>
-    <node name="pkg_name_node" pkg="robotpkg_nameic_arm_interface" type="pkg_name_node"/>
-</launch>

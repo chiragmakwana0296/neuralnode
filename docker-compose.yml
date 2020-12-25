@@ -1,17 +1,17 @@
 version: "3.8"
 services:
-  ######################################################################################
+  ##############################################################
   ## Container for ROS-Devel Workspace
   ## command: sudo docker-compose up ros-devel
-  ## Args:  - ROS_DISTRIBUTION=kinetic | meliodic | noetic
+  ## Args:  - ROS_DISTRIBUTION=kinetic | melodic | noetic
   ##        - BUILD_TYPE= devel | install
-  ######################################################################################
+  ##############################################################
   ros-devel:
     build:
       context: .
       dockerfile: Dockerfile.ros
       args:
-        - ROS_DISTRIBUTION=kinetic
+        - ROS_DISTRIBUTION=melodic
         - BUILD_TYPE=devel
     container_name: ros-devel
     stdin_open: true
@@ -27,12 +27,12 @@ services:
     #  - /dev/input/js0
     command: roscore
 
-  ######################################################################################
+  ##############################################################
   ## Container for ROS-Install Workspace
   ## command: sudo docker-compose up ros-install
-  ## Args:  - ROS_DISTRIBUTION=kinetic | meliodic | noetic
+  ## Args:  - ROS_DISTRIBUTION=kinetic | melodic | noetic
   ##        - BUILD_TYPE= devel | install
-  ######################################################################################
+  ##############################################################
   ros-install:
     build:
       context: .

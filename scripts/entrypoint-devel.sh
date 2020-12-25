@@ -1,4 +1,4 @@
 #!/bin/bash
-source /opt/ros/kinetic/setup.bash
-source /home/ros/catkin_ws/devel/setup.bash
+source /opt/ros/$ROS_DISTRO/setup.bash
+source /home/ros/$ROS_DISTRO/devel/setup.bash
 exec "$@"

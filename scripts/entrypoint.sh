@@ -1,3 +1,3 @@
 #!/bin/bash
-source /opt/ros/kinetic/setup.bash
+source /opt/ros/$ROS_DISTRO/setup.bash
 exec "$@"
