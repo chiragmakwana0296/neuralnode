@@ -43,7 +43,6 @@ RUN if [ ${BUILD_ENV} = "install" ]; \
     fi
 
 COPY ./scripts/entrypoint.sh /
-COPY ./scripts/entrypoint-devel.sh /
 COPY ./scripts/ros-app.launch /
 
 EXPOSE 11311
