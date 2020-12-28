@@ -1,0 +1,55 @@
+version: "3.8"
+services:
+  ##############################################################
+  ## Container for ROS-Devel Workspace
+  ## command: sudo docker-compose up ros-devel
+  ## Args:  - ROS_DISTRIBUTION=kinetic | melodic | noetic
+  ##        - BUILD_TYPE= devel | install
+  ##############################################################
+  ros-devel:
+    build:
+      context: .
+      dockerfile: Dockerfile.ros
+      args:
+        - ROS_DISTRIBUTION=melodic
+        - BUILD_TYPE=devel
+    container_name: ros-devel
+    stdin_open: true
+    tty: true
+    network_mode: "host"
+    volumes:
+      - "./src:/root/catkin_ws/src:rw"
+    # ports:
+    #   - "11311:11311"
+    #   - "19997:19997"
+    # devices:
+    #  - /dev/ttyACM0:/dev/ttyACM0
+    #  - /dev/input/js0
+    command: roscore
+
+  ##############################################################
+  ## Container for ROS-Install Workspace
+  ## command: sudo docker-compose up ros-install
+  ## Args:  - ROS_DISTRIBUTION=kinetic | melodic | noetic
+  ##        - BUILD_TYPE= devel | install
+  ##############################################################
+  ros-install:
+    build:
+      context: .
+      dockerfile: Dockerfile.ros
+      args:
+        - ROS_DISTRIBUTION=kinetic
+        - BUILD_TYPE=install
+    container_name: ros-install
+    stdin_open: true
+    tty: true
+    network_mode: "host"
+    environment:
+      - ROS_DISTRO=kinetic
+    # ports:
+    #   - "11311:11311"
+    #   - "19997:19997"
+    # devices:
+    #   - /dev/ttyACM0:/dev/ttyACM0
+    #   - /dev/input/js0
+  

@@ -1,0 +1,7 @@
+    python-pip 
+    python-setuptools 
+    python-dev 
+    python-opencv 
+    python-matplotlib 
+    python-lxml 
+    python-pygame 
