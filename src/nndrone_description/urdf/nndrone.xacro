@@ -36,7 +36,7 @@
     <geometry>
       <mesh filename="package://nndrone_description/meshes/prop_cw_1_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
-    <material name="silver"/>
+    <material name="red"/>
   </visual>
   <collision>
     <origin rpy="0 0 0" xyz="-0.0985 -0.0695 -0.055"/>
@@ -57,7 +57,7 @@
     <geometry>
       <mesh filename="package://nndrone_description/meshes/prop_ccw_3_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
-    <material name="silver"/>
+    <material name="red"/>
   </visual>
   <collision>
     <origin rpy="0 0 0" xyz="0.0985 -0.0695 -0.055"/>
@@ -78,7 +78,7 @@
     <geometry>
       <mesh filename="package://nndrone_description/meshes/prop_cw_2_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
-    <material name="silver"/>
+    <material name="red"/>
   </visual>
   <collision>
     <origin rpy="0 0 0" xyz="0.0985 0.0869 -0.055"/>
@@ -99,7 +99,7 @@
     <geometry>
       <mesh filename="package://nndrone_description/meshes/prop_ccw_4_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
-    <material name="silver"/>
+    <material name="red"/>
   </visual>
   <collision>
     <origin rpy="0 0 0" xyz="-0.0985 0.0869 -0.055"/>
@@ -120,7 +120,7 @@
     <geometry>
       <mesh filename="package://nndrone_description/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
-    <material name="silver"/>
+    <material name="black"/>
   </visual>
   <collision>
     <origin rpy="0 0 0" xyz="-0.0 -0.077 -0.0415"/>
@@ -141,7 +141,7 @@
     <geometry>
       <mesh filename="package://nndrone_description/meshes/pi_camera_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
-    <material name="silver"/>
+    <material name="black"/>
   </visual>
   <collision>
     <origin rpy="0 0 0" xyz="0.0 -0.06725 -0.036"/>
