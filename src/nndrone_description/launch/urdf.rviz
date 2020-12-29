@@ -70,6 +70,10 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        imu_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         lidar_1:
           Alpha: 1
           Show Axes: false
@@ -80,22 +84,22 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        prop_ccw_3_1:
+        prop_ccw_3:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        prop_ccw_4_1:
+        prop_ccw_4:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        prop_cw_1_1:
+        prop_cw_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        prop_cw_2_1:
+        prop_cw_2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -113,17 +117,19 @@ Visualization Manager:
         All Enabled: false
         base_link:
           Value: false
+        imu_link:
+          Value: true
         lidar_1:
           Value: false
         pi_camera_1:
           Value: false
-        prop_ccw_3_1:
+        prop_ccw_3:
           Value: false
-        prop_ccw_4_1:
+        prop_ccw_4:
           Value: false
-        prop_cw_1_1:
+        prop_cw_1:
           Value: false
-        prop_cw_2_1:
+        prop_cw_2:
           Value: false
       Marker Scale: 0.10000000149011612
       Name: TF
@@ -132,17 +138,19 @@ Visualization Manager:
       Show Names: true
       Tree:
         base_link:
+          imu_link:
+            {}
           lidar_1:
             {}
           pi_camera_1:
             {}
-          prop_ccw_3_1:
+          prop_ccw_3:
             {}
-          prop_ccw_4_1:
+          prop_ccw_4:
             {}
-          prop_cw_1_1:
+          prop_cw_1:
             {}
-          prop_cw_2_1:
+          prop_cw_2:
             {}
       Update Interval: 0
       Value: true
@@ -174,25 +182,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 0.7822297215461731
+      Distance: 0.2805558145046234
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.018821898847818375
-        Y: -0.016937576234340668
-        Z: 0.08490131795406342
+        X: -0.00888113584369421
+        Y: -0.007792700547724962
+        Z: 0.07615288347005844
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6902016401290894
+      Pitch: 0.40020129084587097
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 1.5667579174041748
+      Yaw: 6.124945163726807
     Saved: ~
 Window Geometry:
   Displays:
