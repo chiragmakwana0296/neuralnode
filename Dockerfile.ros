@@ -48,6 +48,5 @@ COPY ./scripts/ros-app.launch /
 EXPOSE 11311
 EXPOSE 19997
 
-WORKDIR /
 ENTRYPOINT ["/entrypoint.sh"]
 

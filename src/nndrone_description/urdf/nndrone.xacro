@@ -2,7 +2,7 @@
 <robot name="nndrone" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:include filename="$(find nndrone_description)/urdf/materials.xacro" />
-  <xacro:include filename="$(find nndrone_description)/urdf/nndrone.trans" />
+  <!-- <xacro:include filename="$(find nndrone_description)/urdf/nndrone.trans" /> -->
   <xacro:include filename="$(find nndrone_description)/urdf/nndrone.gazebo" />
   <xacro:include filename="$(find nndrone_description)/urdf/plugins/plugins.gazebo" />
 
@@ -10,7 +10,7 @@
   <link name="base_link">
     <inertial>
       <origin rpy="0 0 0" xyz="6.920802996400466e-07 -0.006829490164314318 0.049664776612529236"/>
-      <mass value="0.9866541980023963"/>
+      <mass value="0.200"/>
       <inertia ixx="0.004846" ixy="-0.0" ixz="-0.0" iyy="0.005607" iyz="-6.3e-05" izz="0.010017"/>
     </inertial>
     <visual>
@@ -31,7 +31,7 @@
   <link name="prop_cw_1">
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
-      <mass value="0.027453359988127462"/>
+      <mass value="0.01"/>
       <inertia ixx="1e-05" ixy="-0.0" ixz="0.0" iyy="1e-05" iyz="0.0" izz="2.1e-05"/>
     </inertial>
     <visual>
@@ -52,7 +52,7 @@
   <link name="prop_ccw_3">
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
-      <mass value="0.027453359988059235"/>
+      <mass value="0.01"/>
       <inertia ixx="1e-05" ixy="0.0" ixz="-0.0" iyy="1e-05" iyz="0.0" izz="2.1e-05"/>
     </inertial>
     <visual>
@@ -73,7 +73,7 @@
   <link name="prop_cw_2">
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
-      <mass value="0.027453359988127462"/>
+      <mass value="0.01"/>
       <inertia ixx="1e-05" ixy="-0.0" ixz="-0.0" iyy="1e-05" iyz="-0.0" izz="2.1e-05"/>
     </inertial>
     <visual>
@@ -94,7 +94,7 @@
   <link name="prop_ccw_4">
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
-      <mass value="0.027453359988059235"/>
+      <mass value="0.01"/>
       <inertia ixx="1e-05" ixy="0.0" ixz="0.0" iyy="1e-05" iyz="-0.0" izz="2.1e-05"/>
     </inertial>
     <visual>
@@ -157,7 +157,7 @@
   <link name='imu_link'>
       <inertial>
         <origin rpy="0 0 0" xyz="0 0 0" />
-        <mass value="0.01" />
+        <mass value="0.0051" />
         <inertia ixx="0.059416" ixy="0.0" ixz="-0.0" iyy="0.066567" iyz="0.0" izz="0.059416" />
       </inertial>
   </link>

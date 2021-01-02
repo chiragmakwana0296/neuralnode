@@ -10,7 +10,7 @@
         <material>${sensor_color}</material>
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
-        <selfCollide>true</selfCollide>
+        <selfCollide>false</selfCollide>
         <sensor type="camera" name="camera1">
             <update_rate>20.0</update_rate>
             <camera name="bottom">
@@ -52,22 +52,37 @@
     <gazebo reference="imu_link">
         <gravity>true</gravity>
         <sensor name="imu_sensor" type="imu">
-        <always_on>true</always_on>
-        <update_rate>100</update_rate>
-        <visualize>true</visualize>
-        <topic>imu</topic>
-        <pose>0 0 0 3.141593 0 0</pose>
-        <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
-            <topicName>imu</topicName>
-            <bodyName>imu_link</bodyName>
-            <updateRateHZ>10.0</updateRateHZ>
-            <gaussianNoise>0.0</gaussianNoise>
-            <xyzOffset>0 0 0</xyzOffset>
-            <rpyOffset>0 0 0</rpyOffset>
-            <frameName>imu_link</frameName>
-            <initialOrientationAsReference>false</initialOrientationAsReference>
-        </plugin>
-        
+            <always_on>true</always_on>
+            <update_rate>50</update_rate>
+            <visualize>true</visualize>
+            <pose>0 0 0 3.141593 0 0</pose>
+            <!--             
+            <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+                <topicName>imu</topicName>
+                <bodyName>imu_link</bodyName>
+                <updateRateHZ>50.0</updateRateHZ>
+                <gaussianNoise>0.0</gaussianNoise>
+                <xyzOffset>0 0 0</xyzOffset>
+                <rpyOffset>0 0 0</rpyOffset>
+                <frameName>imu_link</frameName>
+                <initialOrientationAsReference>false</initialOrientationAsReference>
+            </plugin>
+             -->
+             <plugin filename="libgazebo_imu_plugin.so" name="rotors_gazebo_imu_plugin">
+            <!-- A good description of the IMU parameters can be found in the kalibr documentation:
+                https://github.com/ethz-asl/kalibr/wiki/IMU-Noise-Model-and-Intrinsics -->
+                <robotNamespace>/nndrone</robotNamespace> <!-- (string, required): ros namespace in which the messages are published -->
+                <linkName>imu_link</linkName> <!-- (string, required): name of the body which holds the IMU sensor -->
+                <imuTopic>imu</imuTopic> <!-- (string): name of the sensor output topic and prefix of service names (defaults to imu) -->
+                <gyroscopeNoiseDensity>0.0003394</gyroscopeNoiseDensity> <!-- Gyroscope noise density (two-sided spectrum) [rad/s/sqrt(Hz)] -->
+                <gyroscopeRandomWalk>0.000038785</gyroscopeRandomWalk> <!-- Gyroscope bias random walk [rad/s/s/sqrt(Hz)] -->
+                <gyroscopeBiasCorrelationTime>1000.0</gyroscopeBiasCorrelationTime> <!-- Gyroscope bias correlation time constant [s] -->
+                <gyroscopeTurnOnBiasSigma>0.0087</gyroscopeTurnOnBiasSigma> <!-- Gyroscope turn on bias standard deviation [rad/s] -->
+                <accelerometerNoiseDensity>0.004</accelerometerNoiseDensity> <!-- Accelerometer noise density (two-sided spectrum) [m/s^2/sqrt(Hz)] -->
+                <accelerometerRandomWalk>0.006</accelerometerRandomWalk> <!-- Accelerometer bias random walk. [m/s^2/s/sqrt(Hz)] -->
+                <accelerometerBiasCorrelationTime>300.0</accelerometerBiasCorrelationTime> <!-- Accelerometer bias correlation time constant [s] -->
+                <accelerometerTurnOnBiasSigma>0.1960</accelerometerTurnOnBiasSigma> <!-- Accelerometer turn on bias standard deviation [m/s^2] -->
+            </plugin>
         </sensor>
     </gazebo>
 <!-- ======================= ROTOR AERODYNAMICS ============================ -->
@@ -104,7 +119,7 @@
             <area>0.002</area>
             <air_density>1.2041</air_density>
             <cp>0.084 0 0</cp>
-            <forward>0 1 0</forward>
+            <forward>0 -1 0</forward>
             <upward>0 0 1</upward>
             <link_name>prop_cw_1</link_name>
         </plugin>
@@ -141,7 +156,7 @@
             <area>0.002</area>
             <air_density>1.2041</air_density>
             <cp>0.084 0 0</cp>
-            <forward>0 1 0</forward>
+            <forward>0 -1 0</forward>
             <upward>0 0 1</upward>
             <link_name>prop_cw_2</link_name>
         </plugin>
@@ -177,7 +192,7 @@
             <area>0.002</area>
             <air_density>1.2041</air_density>
             <cp>0.084 0 0</cp>
-            <forward>0 1 0</forward>
+            <forward>0 -1 0</forward>
             <upward>0 0 1</upward>
             <link_name>prop_cw_2</link_name>
         </plugin>
@@ -214,7 +229,7 @@
             <area>0.002</area>
             <air_density>1.2041</air_density>
             <cp>0.084 0 0</cp>
-            <forward>0 1 0</forward>
+            <forward>0 -1 0</forward>
             <upward>0 0 1</upward>
             <link_name>prop_ccw_3</link_name>
         </plugin>
@@ -251,7 +266,7 @@
             <area>0.002</area>
             <air_density>1.2041</air_density>
             <cp>0.084 0 0</cp>
-            <forward>0 1 0</forward>
+            <forward>0 -1 0</forward>
             <upward>0 0 1</upward>
             <link_name>prop_ccw_4</link_name>
         </plugin>
@@ -287,7 +302,7 @@
             <area>0.002</area>
             <air_density>1.2041</air_density>
             <cp>0.084 0 0</cp>
-            <forward>0 1 0</forward>
+            <forward>0 -1 0</forward>
             <upward>0 0 1</upward>
             <link_name>prop_ccw_4</link_name>
         </plugin>
@@ -305,7 +320,7 @@
             <modelXYZToAirplaneXForwardZDown>0 0 0 3.141593 0 0</modelXYZToAirplaneXForwardZDown>
             <gazeboXYZToNED>0 0 0 3.141593 0 0</gazeboXYZToNED>
             <imuName>imu_sensor</imuName>
-            <connectionTimeoutMaxCount>5</connectionTimeoutMaxCount>
+            <connectionTimeoutMaxCount>10</connectionTimeoutMaxCount>
             <control channel="0">
             <!--
                 incoming control command [0, 1]
@@ -324,7 +339,7 @@
                 <cmd_max>2.5</cmd_max>
                 <cmd_min>-2.5</cmd_min>
                 <jointName>Rev1</jointName>
-                <multiplier>838</multiplier>
+                <multiplier>-800</multiplier>
                 <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
             </control>
             <control channel="1">
@@ -338,7 +353,7 @@
                 <cmd_max>2.5</cmd_max>
                 <cmd_min>-2.5</cmd_min>
                 <jointName>Rev2</jointName>
-                <multiplier>838</multiplier>
+                <multiplier>-800</multiplier>
                 <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
             </control>
             <control channel="2">
@@ -352,7 +367,7 @@
                 <cmd_max>2.5</cmd_max>
                 <cmd_min>-2.5</cmd_min>
                 <jointName>Rev3</jointName>
-                <multiplier>-838</multiplier>
+                <multiplier>800</multiplier>
                 <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
             </control>
             <control channel="3">
@@ -366,7 +381,7 @@
                 <cmd_max>2.5</cmd_max>
                 <cmd_min>-2.5</cmd_min>
                 <jointName>Rev4</jointName>
-                <multiplier>-838</multiplier>
+                <multiplier>800</multiplier>
                 <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
             </control>
         </plugin>

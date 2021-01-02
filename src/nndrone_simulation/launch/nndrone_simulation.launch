@@ -1,0 +1,5 @@
+<launch>
+  <include file="$(find nndrone_description)/launch/gazebo.launch" />
+  <!-- <include file="$(find nndrone_description)/launch/display.launch" /> -->
+  <include file="$(find nndrone_simulation)/launch/nndrone_mavros.launch" />
+</launch>
