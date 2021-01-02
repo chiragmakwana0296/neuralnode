@@ -1,194 +1,212 @@
 <?xml version="1.0" ?>
 <robot name="nndrone" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<xacro:include filename="$(find nndrone_description)/urdf/materials.xacro" />
-<xacro:include filename="$(find nndrone_description)/urdf/nndrone.trans" />
-<xacro:include filename="$(find nndrone_description)/urdf/nndrone.gazebo" />
-<link name="base_link">
-  <inertial>
-    <origin rpy="0 0 0" xyz="6.920802996400466e-07 -0.006829490164314318 0.049664776612529236"/>
-    <mass value="0.9866541980023963"/>
-    <inertia ixx="0.004846" ixy="-0.0" ixz="-0.0" iyy="0.005607" iyz="-6.3e-05" izz="0.010017"/>
-  </inertial>
-  <visual>
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <geometry>
-      <mesh filename="package://nndrone_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <geometry>
-      <mesh filename="package://nndrone_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
+  <xacro:include filename="$(find nndrone_description)/urdf/materials.xacro" />
+  <!-- <xacro:include filename="$(find nndrone_description)/urdf/nndrone.trans" /> -->
+  <xacro:include filename="$(find nndrone_description)/urdf/nndrone.gazebo" />
+  <xacro:include filename="$(find nndrone_description)/urdf/plugins/plugins.gazebo" />
 
-<link name="prop_cw_1_1">
-  <inertial>
-    <origin rpy="0 0 0" xyz="0.09867602514711259 0.06956259279498525 0.07799675698039295"/>
-    <mass value="0.027453359988127462"/>
-    <inertia ixx="1e-05" ixy="-0.0" ixz="0.0" iyy="1e-05" iyz="0.0" izz="2.1e-05"/>
-  </inertial>
-  <visual>
-    <origin rpy="0 0 0" xyz="-0.0985 -0.0695 -0.055"/>
-    <geometry>
-      <mesh filename="package://nndrone_description/meshes/prop_cw_1_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="red"/>
-  </visual>
-  <collision>
-    <origin rpy="0 0 0" xyz="-0.0985 -0.0695 -0.055"/>
-    <geometry>
-      <mesh filename="package://nndrone_description/meshes/prop_cw_1_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
 
-<link name="prop_ccw_3_1">
-  <inertial>
-    <origin rpy="0 0 0" xyz="-0.09867602514711277 0.06956259279498496 0.07799675698038604"/>
-    <mass value="0.027453359988059235"/>
-    <inertia ixx="1e-05" ixy="0.0" ixz="-0.0" iyy="1e-05" iyz="0.0" izz="2.1e-05"/>
-  </inertial>
-  <visual>
-    <origin rpy="0 0 0" xyz="0.0985 -0.0695 -0.055"/>
-    <geometry>
-      <mesh filename="package://nndrone_description/meshes/prop_ccw_3_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="red"/>
-  </visual>
-  <collision>
-    <origin rpy="0 0 0" xyz="0.0985 -0.0695 -0.055"/>
-    <geometry>
-      <mesh filename="package://nndrone_description/meshes/prop_ccw_3_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
+  <link name="base_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="6.920802996400466e-07 -0.006829490164314318 0.049664776612529236"/>
+      <mass value="0.200"/>
+      <inertia ixx="0.004846" ixy="-0.0" ixz="-0.0" iyy="0.005607" iyz="-6.3e-05" izz="0.010017"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://nndrone_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://nndrone_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
 
-<link name="prop_cw_2_1">
-  <inertial>
-    <origin rpy="0 0 0" xyz="-0.09867602514711266 -0.08706259279498486 0.077996756980393"/>
-    <mass value="0.027453359988127462"/>
-    <inertia ixx="1e-05" ixy="-0.0" ixz="-0.0" iyy="1e-05" iyz="-0.0" izz="2.1e-05"/>
-  </inertial>
-  <visual>
-    <origin rpy="0 0 0" xyz="0.0985 0.0869 -0.055"/>
-    <geometry>
-      <mesh filename="package://nndrone_description/meshes/prop_cw_2_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="red"/>
-  </visual>
-  <collision>
-    <origin rpy="0 0 0" xyz="0.0985 0.0869 -0.055"/>
-    <geometry>
-      <mesh filename="package://nndrone_description/meshes/prop_cw_2_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
+  <link name="prop_cw_1">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <mass value="0.01"/>
+      <inertia ixx="1e-05" ixy="-0.0" ixz="0.0" iyy="1e-05" iyz="0.0" izz="2.1e-05"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.0985 -0.0695 -0.055"/>
+      <geometry>
+        <mesh filename="package://nndrone_description/meshes/prop_cw_1_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.0985 -0.0695 -0.055"/>
+      <geometry>
+        <mesh filename="package://nndrone_description/meshes/prop_cw_1_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
 
-<link name="prop_ccw_4_1">
-  <inertial>
-    <origin rpy="0 0 0" xyz="0.09867602514710994 -0.0870625927949852 0.07799675698038634"/>
-    <mass value="0.027453359988059235"/>
-    <inertia ixx="1e-05" ixy="0.0" ixz="0.0" iyy="1e-05" iyz="-0.0" izz="2.1e-05"/>
-  </inertial>
-  <visual>
-    <origin rpy="0 0 0" xyz="-0.0985 0.0869 -0.055"/>
-    <geometry>
-      <mesh filename="package://nndrone_description/meshes/prop_ccw_4_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="red"/>
-  </visual>
-  <collision>
-    <origin rpy="0 0 0" xyz="-0.0985 0.0869 -0.055"/>
-    <geometry>
-      <mesh filename="package://nndrone_description/meshes/prop_ccw_4_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
+  <link name="prop_ccw_3">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <mass value="0.01"/>
+      <inertia ixx="1e-05" ixy="0.0" ixz="-0.0" iyy="1e-05" iyz="0.0" izz="2.1e-05"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0985 -0.0695 -0.055"/>
+      <geometry>
+        <mesh filename="package://nndrone_description/meshes/prop_ccw_3_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0985 -0.0695 -0.055"/>
+      <geometry>
+        <mesh filename="package://nndrone_description/meshes/prop_ccw_3_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
 
-<link name="lidar_1">
-  <inertial>
-    <origin rpy="0 0 0" xyz="1.50702293634589e-17 0.001172866940571421 0.02762648466802698"/>
-    <mass value="0.013801695454915643"/>
-    <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="1e-06" iyz="-0.0" izz="1e-06"/>
-  </inertial>
-  <visual>
-    <origin rpy="0 0 0" xyz="-0.0 -0.077 -0.0415"/>
-    <geometry>
-      <mesh filename="package://nndrone_description/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="black"/>
-  </visual>
-  <collision>
-    <origin rpy="0 0 0" xyz="-0.0 -0.077 -0.0415"/>
-    <geometry>
-      <mesh filename="package://nndrone_description/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
+  <link name="prop_cw_2">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <mass value="0.01"/>
+      <inertia ixx="1e-05" ixy="-0.0" ixz="-0.0" iyy="1e-05" iyz="-0.0" izz="2.1e-05"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0985 0.0869 -0.055"/>
+      <geometry>
+        <mesh filename="package://nndrone_description/meshes/prop_cw_2_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://nndrone_description/meshes/prop_cw_2_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
 
-<link name="pi_camera_1">
-  <inertial>
-    <origin rpy="0 0 0" xyz="-1.0210978849032173e-12 0.0 -0.004779083094555998"/>
-    <mass value="0.005737909542271269"/>
-    <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="-0.0" izz="0.0"/>
-  </inertial>
-  <visual>
-    <origin rpy="0 0 0" xyz="0.0 -0.06725 -0.036"/>
-    <geometry>
-      <mesh filename="package://nndrone_description/meshes/pi_camera_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="black"/>
-  </visual>
-  <collision>
-    <origin rpy="0 0 0" xyz="0.0 -0.06725 -0.036"/>
-    <geometry>
-      <mesh filename="package://nndrone_description/meshes/pi_camera_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
+  <link name="prop_ccw_4">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <mass value="0.01"/>
+      <inertia ixx="1e-05" ixy="0.0" ixz="0.0" iyy="1e-05" iyz="-0.0" izz="2.1e-05"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.0985 0.0869 -0.055"/>
+      <geometry>
+        <mesh filename="package://nndrone_description/meshes/prop_ccw_4_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.0985 0.0869 -0.055"/>
+      <geometry>
+        <mesh filename="package://nndrone_description/meshes/prop_ccw_4_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
 
-<joint name="Rev1" type="continuous">
-  <origin rpy="0 0 0" xyz="0.0985 0.0695 0.055"/>
-  <parent link="base_link"/>
-  <child link="prop_cw_1_1"/>
-  <axis xyz="-0.0 0.0 1.0"/>
-</joint>
+  <link name="lidar_1">
+    <inertial>
+      <origin rpy="0 0 0" xyz="1.50702293634589e-17 0.001172866940571421 0.02762648466802698"/>
+      <mass value="0.013801695454915643"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="1e-06" iyz="-0.0" izz="1e-06"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.0 -0.077 -0.0415"/>
+      <geometry>
+        <mesh filename="package://nndrone_description/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.0 -0.077 -0.0415"/>
+      <geometry>
+        <mesh filename="package://nndrone_description/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
 
-<joint name="Rev3" type="continuous">
-  <origin rpy="0 0 0" xyz="-0.0985 0.0695 0.055"/>
-  <parent link="base_link"/>
-  <child link="prop_ccw_3_1"/>
-  <axis xyz="-0.0 0.0 1.0"/>
-</joint>
+  <link name="pi_camera_1">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-1.0210978849032173e-12 0.0 -0.004779083094555998"/>
+      <mass value="0.005737909542271269"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="-0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 -0.06725 -0.036"/>
+      <geometry>
+        <mesh filename="package://nndrone_description/meshes/pi_camera_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 -0.06725 -0.036"/>
+      <geometry>
+        <mesh filename="package://nndrone_description/meshes/pi_camera_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
 
-<joint name="Rev2" type="continuous">
-  <origin rpy="0 0 0" xyz="-0.0985 -0.0869 0.055"/>
-  <parent link="base_link"/>
-  <child link="prop_cw_2_1"/>
-  <axis xyz="-0.0 0.0 1.0"/>
-</joint>
+  <link name='imu_link'>
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0" />
+        <mass value="0.0051" />
+        <inertia ixx="0.059416" ixy="0.0" ixz="-0.0" iyy="0.066567" iyz="0.0" izz="0.059416" />
+      </inertial>
+  </link>
 
-<joint name="Rev4" type="continuous">
-  <origin rpy="0 0 0" xyz="0.0985 -0.0869 0.055"/>
-  <parent link="base_link"/>
-  <child link="prop_ccw_4_1"/>
-  <axis xyz="-0.0 0.0 1.0"/>
-</joint>
 
-<joint name="Rigid5" type="fixed">
-  <origin rpy="0 0 0" xyz="0.0 0.077 0.0415"/>
-  <parent link="base_link"/>
-  <child link="lidar_1"/>
-</joint>
+  <joint name="Rev1" type="continuous">
+    <origin rpy="0 0 0" xyz="0.0985 0.0695 0.055"/>
+    <parent link="base_link"/>
+    <child link="prop_cw_1"/>
+    <axis xyz="-0.0 0.0 1.0"/>
+  </joint>
 
-<joint name="Rigid6" type="fixed">
-  <origin rpy="0 0 0" xyz="0.0 0.06725 0.036"/>
-  <parent link="base_link"/>
-  <child link="pi_camera_1"/>
-</joint>
+  <joint name="Rev3" type="continuous">
+    <origin rpy="0 0 0" xyz="-0.0985 0.0695 0.055"/>
+    <parent link="base_link"/>
+    <child link="prop_ccw_3"/>
+    <axis xyz="-0.0 0.0 1.0"/>
+  </joint>
+
+  <joint name="Rev2" type="continuous">
+    <origin rpy="0 0 0" xyz="-0.0985 -0.0869 0.055"/>
+    <parent link="base_link"/>
+    <child link="prop_cw_2"/>
+    <axis xyz="-0.0 0.0 1.0"/>
+  </joint>
+
+  <joint name="Rev4" type="continuous">
+    <origin rpy="0 0 0" xyz="0.0985 -0.0869 0.055"/>
+    <parent link="base_link"/>
+    <child link="prop_ccw_4"/>
+    <axis xyz="-0.0 0.0 1.0"/>
+  </joint>
+
+  <joint name="Rigid5" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.077 0.0415"/>
+    <parent link="base_link"/>
+    <child link="lidar_1"/>
+  </joint>
+
+  <joint name="rpi_cam_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.06725 0.036"/>
+    <parent link="base_link"/>
+    <child link="pi_camera_1"/>
+  </joint>
+
+  <joint name="imu_joint" type="fixed">
+      <origin rpy="0 3.141593 0" xyz="0 0 0" />
+      <parent link="base_link" />
+      <child link="imu_link" />
+  </joint>
 
 </robot>

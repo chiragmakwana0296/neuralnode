@@ -1,0 +1,5 @@
+#!/bin/bash
+export GAZEBO_MODEL_PATH=~/ardupilot_gazebo/gazebo_models:${GAZEBO_MODEL_PATH}
+export GAZEBO_RESOURCE_PATH=~/ardupilot_gazebo/gazebo_worlds:${GAZEBO_RESOURCE_PATH}
+
+sim_vehicle.py -v ArduCopter -f gazebo-iris -m --mav10 --map --console -I1

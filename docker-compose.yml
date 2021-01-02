@@ -17,6 +17,8 @@ services:
     stdin_open: true
     tty: true
     network_mode: "host"
+    environment:
+      - ROS_DISTRO=melodic
     volumes:
       - "./src:/root/catkin_ws/src:rw"
     # ports:
@@ -33,23 +35,23 @@ services:
   ## Args:  - ROS_DISTRIBUTION=kinetic | melodic | noetic
   ##        - BUILD_TYPE= devel | install
   ##############################################################
-  ros-install:
+  apm-sitl:
     build:
       context: .
-      dockerfile: Dockerfile.ros
+      dockerfile: Dockerfile.apm
       args:
-        - ROS_DISTRIBUTION=kinetic
-        - BUILD_TYPE=install
-    container_name: ros-install
+        - ROS_DISTRIBUTION=melodic
+    container_name: apm-sitl
     stdin_open: true
     tty: true
     network_mode: "host"
     environment:
-      - ROS_DISTRO=kinetic
+      - ROS_DISTRO=melodic
     # ports:
     #   - "11311:11311"
     #   - "19997:19997"
     # devices:
     #   - /dev/ttyACM0:/dev/ttyACM0
     #   - /dev/input/js0
+    command: bash
   
