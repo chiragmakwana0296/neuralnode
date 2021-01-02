@@ -1,0 +1,390 @@
+<?xml version="1.0" ?>
+<robot name="nndrone" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+    <gazebo>
+        <plugin filename="libgazebo_ros_control.so" name="control">
+            <robotNamespace>/nndrone</robotNamespace> 
+        </plugin>
+    </gazebo>
+
+    <gazebo reference="pi_camera_1">
+        <material>${sensor_color}</material>
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+        <selfCollide>false</selfCollide>
+        <sensor type="camera" name="camera1">
+            <update_rate>20.0</update_rate>
+            <camera name="bottom">
+                <horizontal_fov>2.0943951023931953</horizontal_fov>
+                <image>
+                    <width>640</width>
+                    <height>480</height>
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.02</near>
+                    <far>300</far>
+                </clip>
+                <noise>
+                    <type>gaussian</type>
+                    <!-- Noise is sampled independently per pixel on each frame.
+                        That pixel's noise value is added to each of its color
+                        channels, which at that point lie in the range [0,1]. -->
+                    <mean>0.0</mean>
+                    <stddev>0.007</stddev>
+                </noise>
+            </camera>
+            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+                <alwaysOn>true</alwaysOn>
+                <updateRate>20.0</updateRate>
+                <cameraName>nndrone/picamera</cameraName>
+                <imageTopicName>image_raw</imageTopicName>
+                <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+                <frameName>camera_link</frameName>
+                <hackBaseline>0.07</hackBaseline>
+                <distortionK1>0.0</distortionK1>
+                <distortionK2>0.0</distortionK2>
+                <distortionK3>0.0</distortionK3>
+                <distortionT1>0.0</distortionT1>
+                <distortionT2>0.0</distortionT2>
+            </plugin>
+        </sensor>
+    </gazebo>
+    <gazebo reference="imu_link">
+        <gravity>true</gravity>
+        <sensor name="imu_sensor" type="imu">
+            <always_on>true</always_on>
+            <update_rate>50</update_rate>
+            <visualize>true</visualize>
+            <pose>0 0 0 3.141593 0 0</pose>
+            <!--             
+            <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+                <topicName>imu</topicName>
+                <bodyName>imu_link</bodyName>
+                <updateRateHZ>50.0</updateRateHZ>
+                <gaussianNoise>0.0</gaussianNoise>
+                <xyzOffset>0 0 0</xyzOffset>
+                <rpyOffset>0 0 0</rpyOffset>
+                <frameName>imu_link</frameName>
+                <initialOrientationAsReference>false</initialOrientationAsReference>
+            </plugin>
+             -->
+             <plugin filename="libgazebo_imu_plugin.so" name="rotors_gazebo_imu_plugin">
+            <!-- A good description of the IMU parameters can be found in the kalibr documentation:
+                https://github.com/ethz-asl/kalibr/wiki/IMU-Noise-Model-and-Intrinsics -->
+                <robotNamespace>/nndrone</robotNamespace> <!-- (string, required): ros namespace in which the messages are published -->
+                <linkName>imu_link</linkName> <!-- (string, required): name of the body which holds the IMU sensor -->
+                <imuTopic>imu</imuTopic> <!-- (string): name of the sensor output topic and prefix of service names (defaults to imu) -->
+                <gyroscopeNoiseDensity>0.0003394</gyroscopeNoiseDensity> <!-- Gyroscope noise density (two-sided spectrum) [rad/s/sqrt(Hz)] -->
+                <gyroscopeRandomWalk>0.000038785</gyroscopeRandomWalk> <!-- Gyroscope bias random walk [rad/s/s/sqrt(Hz)] -->
+                <gyroscopeBiasCorrelationTime>1000.0</gyroscopeBiasCorrelationTime> <!-- Gyroscope bias correlation time constant [s] -->
+                <gyroscopeTurnOnBiasSigma>0.0087</gyroscopeTurnOnBiasSigma> <!-- Gyroscope turn on bias standard deviation [rad/s] -->
+                <accelerometerNoiseDensity>0.004</accelerometerNoiseDensity> <!-- Accelerometer noise density (two-sided spectrum) [m/s^2/sqrt(Hz)] -->
+                <accelerometerRandomWalk>0.006</accelerometerRandomWalk> <!-- Accelerometer bias random walk. [m/s^2/s/sqrt(Hz)] -->
+                <accelerometerBiasCorrelationTime>300.0</accelerometerBiasCorrelationTime> <!-- Accelerometer bias correlation time constant [s] -->
+                <accelerometerTurnOnBiasSigma>0.1960</accelerometerTurnOnBiasSigma> <!-- Accelerometer turn on bias standard deviation [m/s^2] -->
+            </plugin>
+        </sensor>
+    </gazebo>
+<!-- ======================= ROTOR AERODYNAMICS ============================ -->
+
+    <!-- =========== PROP 1 ============= -->
+    <gazebo>
+        <plugin name="prop_cw_1_blade_1" filename="libLiftDragPlugin.so">
+            <a0>0.3</a0>
+            <alpha_stall>1.4</alpha_stall>
+            <cla>4.2500</cla>
+            <cda>0.10</cda>
+            <cma>0.00</cma>
+            <cla_stall>-0.025</cla_stall>
+            <cda_stall>0.0</cda_stall>
+            <cma_stall>0.0</cma_stall>
+            <area>0.002</area>
+            <air_density>1.2041</air_density>
+            <cp>0.084 0 0</cp>
+            <forward>0 1 0</forward>
+            <upward>0 0 1</upward>
+            <link_name>prop_cw_1</link_name>
+        </plugin>
+    </gazebo>
+    <gazebo>
+        <plugin name="prop_cw_1_blade_2" filename="libLiftDragPlugin.so">
+            <a0>0.3</a0>
+            <alpha_stall>1.4</alpha_stall>
+            <cla>4.2500</cla>
+            <cda>0.10</cda>
+            <cma>0.00</cma>
+            <cla_stall>-0.025</cla_stall>
+            <cda_stall>0.0</cda_stall>
+            <cma_stall>0.0</cma_stall>
+            <area>0.002</area>
+            <air_density>1.2041</air_density>
+            <cp>0.084 0 0</cp>
+            <forward>0 -1 0</forward>
+            <upward>0 0 1</upward>
+            <link_name>prop_cw_1</link_name>
+        </plugin>
+    </gazebo>
+    <gazebo>
+        <plugin name="prop_cw_1_blade_3" filename="libLiftDragPlugin.so">
+            <a0>0.3</a0>
+            <alpha_stall>1.4</alpha_stall>
+            <cla>4.2500</cla>
+            <cda>0.10</cda>
+            <cma>0.00</cma>
+            <cla_stall>-0.025</cla_stall>
+            <cda_stall>0.0</cda_stall>
+            <cma_stall>0.0</cma_stall>
+            <area>0.002</area>
+            <air_density>1.2041</air_density>
+            <cp>0.084 0 0</cp>
+            <forward>0 1 0</forward>
+            <upward>0 0 1</upward>
+            <link_name>prop_cw_1</link_name>
+        </plugin>
+    </gazebo>
+    <!-- =========== PROP 2 ============= -->
+    <gazebo>
+        <plugin name="prop_cw_2_blade_1" filename="libLiftDragPlugin.so">
+            <a0>0.3</a0>
+            <alpha_stall>1.4</alpha_stall>
+            <cla>4.2500</cla>
+            <cda>0.10</cda>
+            <cma>0.00</cma>
+            <cla_stall>-0.025</cla_stall>
+            <cda_stall>0.0</cda_stall>
+            <cma_stall>0.0</cma_stall>
+            <area>0.002</area>
+            <air_density>1.2041</air_density>
+            <cp>0.084 0 0</cp>
+            <forward>0 -1 0</forward>
+            <upward>0 0 1</upward>
+            <link_name>prop_cw_2</link_name>
+        </plugin>
+    </gazebo>
+    <gazebo>
+        <plugin name="prop_cw_2_blade_2" filename="libLiftDragPlugin.so">
+            <a0>0.3</a0>
+            <alpha_stall>1.4</alpha_stall>
+            <cla>4.2500</cla>
+            <cda>0.10</cda>
+            <cma>0.00</cma>
+            <cla_stall>-0.025</cla_stall>
+            <cda_stall>0.0</cda_stall>
+            <cma_stall>0.0</cma_stall>
+            <area>0.002</area>
+            <air_density>1.2041</air_density>
+            <cp>0.084 0 0</cp>
+            <forward>0 1 0</forward>
+            <upward>0 0 1</upward>
+            <link_name>prop_cw_2</link_name>
+        </plugin>
+    </gazebo>
+    <gazebo>
+        <plugin name="prop_cw_2_blade_3" filename="libLiftDragPlugin.so">
+            <a0>0.3</a0>
+            <alpha_stall>1.4</alpha_stall>
+            <cla>4.2500</cla>
+            <cda>0.10</cda>
+            <cma>0.00</cma>
+            <cla_stall>-0.025</cla_stall>
+            <cda_stall>0.0</cda_stall>
+            <cma_stall>0.0</cma_stall>
+            <area>0.002</area>
+            <air_density>1.2041</air_density>
+            <cp>0.084 0 0</cp>
+            <forward>0 -1 0</forward>
+            <upward>0 0 1</upward>
+            <link_name>prop_cw_2</link_name>
+        </plugin>
+    </gazebo>
+    <!-- =========== PROP 3 ============= -->
+    <gazebo>
+        <plugin name="prop_ccw_3_blade_1" filename="libLiftDragPlugin.so">
+            <a0>0.3</a0>
+            <alpha_stall>1.4</alpha_stall>
+            <cla>4.2500</cla>
+            <cda>0.10</cda>
+            <cma>0.00</cma>
+            <cla_stall>-0.025</cla_stall>
+            <cda_stall>0.0</cda_stall>
+            <cma_stall>0.0</cma_stall>
+            <area>0.002</area>
+            <air_density>1.2041</air_density>
+            <cp>0.084 0 0</cp>
+            <forward>0 1 0</forward>
+            <upward>0 0 1</upward>
+            <link_name>prop_ccw_3</link_name>
+        </plugin>
+    </gazebo>
+    <gazebo>
+        <plugin name="prop_ccw_3_blade_2" filename="libLiftDragPlugin.so">
+            <a0>0.3</a0>
+            <alpha_stall>1.4</alpha_stall>
+            <cla>4.2500</cla>
+            <cda>0.10</cda>
+            <cma>0.00</cma>
+            <cla_stall>-0.025</cla_stall>
+            <cda_stall>0.0</cda_stall>
+            <cma_stall>0.0</cma_stall>
+            <area>0.002</area>
+            <air_density>1.2041</air_density>
+            <cp>0.084 0 0</cp>
+            <forward>0 -1 0</forward>
+            <upward>0 0 1</upward>
+            <link_name>prop_ccw_3</link_name>
+        </plugin>
+    </gazebo>
+    <gazebo>
+        <plugin name="prop_ccw_3_blade_3" filename="libLiftDragPlugin.so">
+            <a0>0.3</a0>
+            <alpha_stall>1.4</alpha_stall>
+            <cla>4.2500</cla>
+            <cda>0.10</cda>
+            <cma>0.00</cma>
+            <cla_stall>-0.025</cla_stall>
+            <cda_stall>0.0</cda_stall>
+            <cma_stall>0.0</cma_stall>
+            <area>0.002</area>
+            <air_density>1.2041</air_density>
+            <cp>0.084 0 0</cp>
+            <forward>0 1 0</forward>
+            <upward>0 0 1</upward>
+            <link_name>prop_ccw_3</link_name>
+        </plugin>
+    </gazebo>
+    <!-- =========== PROP 4 ============= -->
+    <gazebo>
+        <plugin name="prop_ccw_4_blade_1" filename="libLiftDragPlugin.so">
+            <a0>0.3</a0>
+            <alpha_stall>1.4</alpha_stall>
+            <cla>4.2500</cla>
+            <cda>0.10</cda>
+            <cma>0.00</cma>
+            <cla_stall>-0.025</cla_stall>
+            <cda_stall>0.0</cda_stall>
+            <cma_stall>0.0</cma_stall>
+            <area>0.002</area>
+            <air_density>1.2041</air_density>
+            <cp>0.084 0 0</cp>
+            <forward>0 -1 0</forward>
+            <upward>0 0 1</upward>
+            <link_name>prop_ccw_4</link_name>
+        </plugin>
+    </gazebo>
+    <gazebo>
+        <plugin name="prop_ccw_4_blade_2" filename="libLiftDragPlugin.so">
+            <a0>0.3</a0>
+            <alpha_stall>1.4</alpha_stall>
+            <cla>4.2500</cla>
+            <cda>0.10</cda>
+            <cma>0.00</cma>
+            <cla_stall>-0.025</cla_stall>
+            <cda_stall>0.0</cda_stall>
+            <cma_stall>0.0</cma_stall>
+            <area>0.002</area>
+            <air_density>1.2041</air_density>
+            <cp>0.084 0 0</cp>
+            <forward>0 1 0</forward>
+            <upward>0 0 1</upward>
+            <link_name>prop_ccw_4</link_name>
+        </plugin>
+    </gazebo>
+    <gazebo>
+        <plugin name="prop_ccw_4_blade_3" filename="libLiftDragPlugin.so">
+            <a0>0.3</a0>
+            <alpha_stall>1.4</alpha_stall>
+            <cla>4.2500</cla>
+            <cda>0.10</cda>
+            <cma>0.00</cma>
+            <cla_stall>-0.025</cla_stall>
+            <cda_stall>0.0</cda_stall>
+            <cma_stall>0.0</cma_stall>
+            <area>0.002</area>
+            <air_density>1.2041</air_density>
+            <cp>0.084 0 0</cp>
+            <forward>0 -1 0</forward>
+            <upward>0 0 1</upward>
+            <link_name>prop_ccw_4</link_name>
+        </plugin>
+    </gazebo>
+
+    <gazebo>
+        <plugin name="arducopter_plugin" filename="libArduPilotPlugin.so">
+            <fdm_addr>127.0.0.1</fdm_addr>
+            <fdm_port_in>9012</fdm_port_in>
+            <fdm_port_out>9013</fdm_port_out>
+            <!--
+                Require by APM :
+                Only change model and gazebo from XYZ to XY-Z coordinates
+            -->
+            <modelXYZToAirplaneXForwardZDown>0 0 0 3.141593 0 0</modelXYZToAirplaneXForwardZDown>
+            <gazeboXYZToNED>0 0 0 3.141593 0 0</gazeboXYZToNED>
+            <imuName>imu_sensor</imuName>
+            <connectionTimeoutMaxCount>10</connectionTimeoutMaxCount>
+            <control channel="0">
+            <!--
+                incoming control command [0, 1]
+                so offset it by 0 to get [0, 1]
+                and divide max target by 1.
+                offset = 0
+                multiplier = 838 max rpm / 1 = 838
+                -->
+                <type>VELOCITY</type>
+                <offset>0</offset>
+                <p_gain>0.20</p_gain>
+                <i_gain>0</i_gain>
+                <d_gain>0</d_gain>
+                <i_max>0</i_max>
+                <i_min>0</i_min>
+                <cmd_max>2.5</cmd_max>
+                <cmd_min>-2.5</cmd_min>
+                <jointName>Rev1</jointName>
+                <multiplier>-800</multiplier>
+                <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
+            </control>
+            <control channel="1">
+                <type>VELOCITY</type>
+                <offset>0</offset>
+                <p_gain>0.20</p_gain>
+                <i_gain>0</i_gain>
+                <d_gain>0</d_gain>
+                <i_max>0</i_max>
+                <i_min>0</i_min>
+                <cmd_max>2.5</cmd_max>
+                <cmd_min>-2.5</cmd_min>
+                <jointName>Rev2</jointName>
+                <multiplier>-800</multiplier>
+                <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
+            </control>
+            <control channel="2">
+                <type>VELOCITY</type>
+                <offset>0</offset>
+                <p_gain>0.20</p_gain>
+                <i_gain>0</i_gain>
+                <d_gain>0</d_gain>
+                <i_max>0</i_max>
+                <i_min>0</i_min>
+                <cmd_max>2.5</cmd_max>
+                <cmd_min>-2.5</cmd_min>
+                <jointName>Rev3</jointName>
+                <multiplier>800</multiplier>
+                <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
+            </control>
+            <control channel="3">
+                <type>VELOCITY</type>
+                <offset>0</offset>
+                <p_gain>0.20</p_gain>
+                <i_gain>0</i_gain>
+                <d_gain>0</d_gain>
+                <i_max>0</i_max>
+                <i_min>0</i_min>
+                <cmd_max>2.5</cmd_max>
+                <cmd_min>-2.5</cmd_min>
+                <jointName>Rev4</jointName>
+                <multiplier>800</multiplier>
+                <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
+            </control>
+        </plugin>
+    </gazebo>
+
+</robot>

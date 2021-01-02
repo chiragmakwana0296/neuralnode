@@ -1,2 +1,2 @@
 # neuralnode
-An educational drone platform
+Autonomous Drone Operation Platform
