@@ -7,9 +7,9 @@
 	    <arg name="fcu_protocol" default="v2.0" />
 	    <arg name="respawn_mavros" default="false" />
 
-	<include file="$(find nndrone_simulation)/launch/mavros_node.launch">
-		<arg name="pluginlists_yaml" value="$(find nndrone_simulation)/config/apm_pluginlists.yaml" />
-		<arg name="config_yaml" value="$(find nndrone_simulation)/config/apm_config.yaml" />
+	<include file="$(find nndrone_mavros)/launch/mavros_node.launch">
+		<arg name="pluginlists_yaml" value="$(find nndrone_mavros)/config/apm_pluginlists.yaml" />
+		<arg name="config_yaml" value="$(find nndrone_mavros)/config/apm_config.yaml" />
 
 		<arg name="fcu_url" value="$(arg fcu_url)" />
 		<arg name="gcs_url" value="$(arg gcs_url)" />
@@ -19,5 +19,5 @@
 		<arg name="fcu_protocol" value="$(arg fcu_protocol)" />
 		<arg name="respawn_mavros" default="$(arg respawn_mavros)" />
 	</include>
-	<node pkg="nndrone_simulation" type="sitl" name="sitl" output="screen"/>
+	
 </launch>
