@@ -124,6 +124,8 @@
             <link_name>prop_cw_1</link_name>
         </plugin>
     </gazebo>
+
+    <!--     
     <gazebo>
         <plugin name="prop_cw_1_blade_3" filename="libLiftDragPlugin.so">
             <a0>0.3</a0>
@@ -141,7 +143,9 @@
             <upward>0 0 1</upward>
             <link_name>prop_cw_1</link_name>
         </plugin>
-    </gazebo>
+    </gazebo> 
+    -->
+
     <!-- =========== PROP 2 ============= -->
     <gazebo>
         <plugin name="prop_cw_2_blade_1" filename="libLiftDragPlugin.so">
@@ -179,6 +183,7 @@
             <link_name>prop_cw_2</link_name>
         </plugin>
     </gazebo>
+    <!-- 
     <gazebo>
         <plugin name="prop_cw_2_blade_3" filename="libLiftDragPlugin.so">
             <a0>0.3</a0>
@@ -197,6 +202,7 @@
             <link_name>prop_cw_2</link_name>
         </plugin>
     </gazebo>
+     -->
     <!-- =========== PROP 3 ============= -->
     <gazebo>
         <plugin name="prop_ccw_3_blade_1" filename="libLiftDragPlugin.so">
@@ -234,6 +240,7 @@
             <link_name>prop_ccw_3</link_name>
         </plugin>
     </gazebo>
+    <!-- 
     <gazebo>
         <plugin name="prop_ccw_3_blade_3" filename="libLiftDragPlugin.so">
             <a0>0.3</a0>
@@ -252,6 +259,7 @@
             <link_name>prop_ccw_3</link_name>
         </plugin>
     </gazebo>
+     -->
     <!-- =========== PROP 4 ============= -->
     <gazebo>
         <plugin name="prop_ccw_4_blade_1" filename="libLiftDragPlugin.so">
@@ -289,6 +297,7 @@
             <link_name>prop_ccw_4</link_name>
         </plugin>
     </gazebo>
+<!--     
     <gazebo>
         <plugin name="prop_ccw_4_blade_3" filename="libLiftDragPlugin.so">
             <a0>0.3</a0>
@@ -306,8 +315,8 @@
             <upward>0 0 1</upward>
             <link_name>prop_ccw_4</link_name>
         </plugin>
-    </gazebo>
-
+    </gazebo> 
+    -->
     <gazebo>
         <plugin name="arducopter_plugin" filename="libArduPilotPlugin.so">
             <fdm_addr>127.0.0.1</fdm_addr>
@@ -386,5 +395,59 @@
             </control>
         </plugin>
     </gazebo>
-
+<!-- 
+    <plugin name='mavlink_interface' filename='libgazebo_mavlink_interface.so'>
+      <robotNamespace/>
+      <imuSubTopic>/imu</imuSubTopic>
+      <mavlink_addr>127.0.0.1</mavlink_addr>
+      <mavlink_udp_port>14560</mavlink_udp_port>
+      <serialEnabled>0</serialEnabled>
+      <serialDevice>/dev/ttyACM0</serialDevice>
+      <baudRate>921600</baudRate>
+      <qgc_addr>127.0.0.1</qgc_addr>
+      <qgc_udp_port>14550</qgc_udp_port>
+      <hil_mode>0</hil_mode>
+      <hil_state_level>0</hil_state_level>
+      <vehicle_is_tailsitter>0</vehicle_is_tailsitter>
+      <send_odometry>0</send_odometry>
+      <motorSpeedCommandPubTopic>/gazebo/command/motor_speed</motorSpeedCommandPubTopic>
+      <control_channels>
+        <channel name='rotor1'>
+          <input_index>0</input_index>
+          <input_offset>0</input_offset>
+          <input_scaling>1000</input_scaling>
+          <zero_position_disarmed>0</zero_position_disarmed>
+          <zero_position_armed>100</zero_position_armed>
+          <jointName>Rev1</jointName>
+          <joint_control_type>velocity</joint_control_type>
+        </channel>
+        <channel name='rotor2'>
+          <input_index>1</input_index>
+          <input_offset>0</input_offset>
+          <input_scaling>1000</input_scaling>
+          <zero_position_disarmed>0</zero_position_disarmed>
+          <zero_position_armed>100</zero_position_armed>
+          <jointName>Rev2</jointName>
+          <joint_control_type>velocity</joint_control_type>
+        </channel>
+        <channel name='rotor3'>
+          <input_index>2</input_index>
+          <input_offset>0</input_offset>
+          <input_scaling>1000</input_scaling>
+          <zero_position_disarmed>0</zero_position_disarmed>
+          <zero_position_armed>100</zero_position_armed>
+          <jointName>Rev3</jointName>
+          <joint_control_type>velocity</joint_control_type>
+        </channel>
+        <channel name='rotor4'>
+          <input_index>3</input_index>
+          <input_offset>0</input_offset>
+          <input_scaling>1000</input_scaling>
+          <zero_position_disarmed>0</zero_position_disarmed>
+          <zero_position_armed>100</zero_position_armed>
+          <jointName>Rev4</jointName>
+          <joint_control_type>velocity</joint_control_type>
+        </channel>
+    </plugin>
+     -->
 </robot>

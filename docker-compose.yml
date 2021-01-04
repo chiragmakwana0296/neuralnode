@@ -13,7 +13,7 @@ services:
       args:
         - ROS_DISTRIBUTION=melodic
         - BUILD_TYPE=devel
-    container_name: ros-devel
+    container_name: ros-devel 
     stdin_open: true
     tty: true
     network_mode: "host"

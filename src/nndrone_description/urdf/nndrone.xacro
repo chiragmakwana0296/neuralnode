@@ -10,7 +10,7 @@
   <link name="base_link">
     <inertial>
       <origin rpy="0 0 0" xyz="6.920802996400466e-07 -0.006829490164314318 0.049664776612529236"/>
-      <mass value="0.200"/>
+      <mass value="0.1500"/>
       <inertia ixx="0.004846" ixy="-0.0" ixz="-0.0" iyy="0.005607" iyz="-6.3e-05" izz="0.010017"/>
     </inertial>
     <visual>
@@ -31,7 +31,7 @@
   <link name="prop_cw_1">
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
-      <mass value="0.01"/>
+      <mass value="0.027"/>
       <inertia ixx="1e-05" ixy="-0.0" ixz="0.0" iyy="1e-05" iyz="0.0" izz="2.1e-05"/>
     </inertial>
     <visual>
@@ -52,7 +52,7 @@
   <link name="prop_ccw_3">
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
-      <mass value="0.01"/>
+      <mass value="0.027"/>
       <inertia ixx="1e-05" ixy="0.0" ixz="-0.0" iyy="1e-05" iyz="0.0" izz="2.1e-05"/>
     </inertial>
     <visual>
@@ -73,7 +73,7 @@
   <link name="prop_cw_2">
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
-      <mass value="0.01"/>
+      <mass value="0.027"/>
       <inertia ixx="1e-05" ixy="-0.0" ixz="-0.0" iyy="1e-05" iyz="-0.0" izz="2.1e-05"/>
     </inertial>
     <visual>
@@ -94,7 +94,7 @@
   <link name="prop_ccw_4">
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
-      <mass value="0.01"/>
+      <mass value="0.027"/>
       <inertia ixx="1e-05" ixy="0.0" ixz="0.0" iyy="1e-05" iyz="-0.0" izz="2.1e-05"/>
     </inertial>
     <visual>
@@ -115,7 +115,7 @@
   <link name="lidar_1">
     <inertial>
       <origin rpy="0 0 0" xyz="1.50702293634589e-17 0.001172866940571421 0.02762648466802698"/>
-      <mass value="0.013801695454915643"/>
+      <mass value="0.01"/>
       <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="1e-06" iyz="-0.0" izz="1e-06"/>
     </inertial>
     <visual>
@@ -136,7 +136,7 @@
   <link name="pi_camera_1">
     <inertial>
       <origin rpy="0 0 0" xyz="-1.0210978849032173e-12 0.0 -0.004779083094555998"/>
-      <mass value="0.005737909542271269"/>
+      <mass value="0.01"/>
       <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="-0.0" izz="0.0"/>
     </inertial>
     <visual>

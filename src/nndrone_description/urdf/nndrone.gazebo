@@ -5,7 +5,6 @@
 <xacro:property name="prop_color" value="Gazebo/Red" />
 <xacro:property name="sensor_color" value="Gazebo/Black" />
 
-
 <gazebo reference="base_link">
   <material>${body_color}</material>
   <mu1>0.2</mu1>

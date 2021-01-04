@@ -16,11 +16,6 @@ RUN git clone --progress --verbose https://github.com/chiragmakwana0296/ardupilo
 WORKDIR /ardupilot
 RUN git submodule update --init --recursive
 
-
-
-RUN pwd
-RUN ls
-
 # ROS workspace
 # ARG BUILD_TYPE
 # ENV BUILD_ENV=${BUILD_TYPE}

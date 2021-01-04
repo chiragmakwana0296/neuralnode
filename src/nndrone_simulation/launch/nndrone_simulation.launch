@@ -1,5 +1,6 @@
 <launch>
   <include file="$(find nndrone_description)/launch/gazebo.launch" />
-  <!-- <include file="$(find nndrone_description)/launch/display.launch" /> -->
-  <include file="$(find nndrone_simulation)/launch/nndrone_mavros.launch" />
+  <include file="$(find nndrone_description)/launch/display.launch" />
+  <include file="$(find nndrone_mavros)/launch/nndrone_mavros.launch" />
+  <node pkg="nndrone_simulation" type="sitl" name="sitl" output="screen"/>
 </launch>
