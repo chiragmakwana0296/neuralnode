@@ -20,6 +20,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-${ROS_DISTRO}-rosbridge-suite \  
     && rm -rf /var/lib/apt/lists/*
 
+# Install mavros dependancies
+RUN sudo wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
+RUN bash ./install_geographiclib_datasets.sh
+
 # Install Python Modules
 RUN pip install -f /requirements/python-moules.txt
 
@@ -53,6 +57,7 @@ COPY ./scripts/ros-app.launch /
 
 EXPOSE 11311
 EXPOSE 19997
+EXPOSE 9090
 
 ENTRYPOINT ["/entrypoint.sh"]
 
