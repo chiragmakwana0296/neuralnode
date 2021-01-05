@@ -2,4 +2,4 @@
 Autonomous Drone Operation Platform
 
 ## nnDrone
-![Model](https://github.com/chiragmakwana0296/neuralnode/blob/main/nndrone_gaz.png?raw=true)
+![Model](https://github.com/chiragmakwana0296/neuralnode/main/nndrone_gaz.png?raw=true)
