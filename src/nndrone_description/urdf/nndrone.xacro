@@ -9,30 +9,43 @@
 
   <link name="base_link">
     <inertial>
-      <origin rpy="0 0 0" xyz="6.920802996400466e-07 -0.006829490164314318 0.049664776612529236"/>
-      <mass value="0.1500"/>
-      <inertia ixx="0.004846" ixy="-0.0" ixz="-0.0" iyy="0.005607" iyz="-6.3e-05" izz="0.010017"/>
+      <origin rpy="0 0 -1.5708" xyz="0.0 0.0 -0.055"/>
+      <mass value="0.5"/>
+      <inertia  ixx="0.0017350964305" ixy="0" ixz="0" iyy="0.00253016077525" iyz="0" izz="0.00365126915346" />
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 -1.5708" xyz="0 0 -0.055"/>
       <geometry>
         <mesh filename="package://nndrone_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="silver"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 -1.5708" xyz="0 0 -0.055"/> 
       <geometry>
         <mesh filename="package://nndrone_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
+      <surface>
+          <contact>
+            <ode>
+              <max_vel>100.0</max_vel>
+              <min_depth>0.001</min_depth>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>1.0</mu>
+              <mu2>1.0</mu2>
+            </ode>
+          </friction>
+        </surface>
     </collision>
   </link>
-
   <link name="prop_cw_1">
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
       <mass value="0.027"/>
-      <inertia ixx="1e-05" ixy="-0.0" ixz="0.0" iyy="1e-05" iyz="0.0" izz="2.1e-05"/>
+      <inertia  ixx="2.16576359834e-05" ixy="0" ixz="0" iyy="2.78597602888e-05" iyz="0" izz="4.9003356158e-05" />
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="-0.0985 -0.0695 -0.055"/>
@@ -53,7 +66,7 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
       <mass value="0.027"/>
-      <inertia ixx="1e-05" ixy="0.0" ixz="-0.0" iyy="1e-05" iyz="0.0" izz="2.1e-05"/>
+      <inertia  ixx="2.16576359834e-05" ixy="0" ixz="0" iyy="2.78597602888e-05" iyz="0" izz="4.9003356158e-05" />
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0.0985 -0.0695 -0.055"/>
@@ -74,7 +87,7 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
       <mass value="0.027"/>
-      <inertia ixx="1e-05" ixy="-0.0" ixz="-0.0" iyy="1e-05" iyz="-0.0" izz="2.1e-05"/>
+      <inertia  ixx="2.16576359834e-05" ixy="0" ixz="0" iyy="2.78597602888e-05" iyz="0" izz="4.9003356158e-05" />
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0.0985 0.0869 -0.055"/>
@@ -84,7 +97,7 @@
       <material name="red"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <origin rpy="0 0 0" xyz="0.0985 0.0869 -0.055"/>
       <geometry>
         <mesh filename="package://nndrone_description/meshes/prop_cw_2_1.stl" scale="0.001 0.001 0.001"/>
       </geometry>
@@ -95,7 +108,7 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
       <mass value="0.027"/>
-      <inertia ixx="1e-05" ixy="0.0" ixz="0.0" iyy="1e-05" iyz="-0.0" izz="2.1e-05"/>
+      <inertia  ixx="2.16576359834e-05" ixy="0" ixz="0" iyy="2.78597602888e-05" iyz="0" izz="4.9003356158e-05" />
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="-0.0985 0.0869 -0.055"/>
@@ -125,12 +138,7 @@
       </geometry>
       <material name="black"/>
     </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="-0.0 -0.077 -0.0415"/>
-      <geometry>
-        <mesh filename="package://nndrone_description/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-    </collision>
+
   </link>
 
   <link name="pi_camera_1">
@@ -146,67 +154,76 @@
       </geometry>
       <material name="black"/>
     </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0.0 -0.06725 -0.036"/>
-      <geometry>
-        <mesh filename="package://nndrone_description/meshes/pi_camera_1.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-    </collision>
+
   </link>
 
   <link name='imu_link'>
       <inertial>
         <origin rpy="0 0 0" xyz="0 0 0" />
-        <mass value="0.0051" />
-        <inertia ixx="0.059416" ixy="0.0" ixz="-0.0" iyy="0.066567" iyz="0.0" izz="0.059416" />
+        <mass value="0.15" />
+        <inertia  ixx="0.000520528929149" ixy="0" ixz="0" iyy="0.000759048232575" iyz="0" izz="0.00109538074604" />
       </inertial>
+      <visual>
+      <origin rpy="0 0 0" xyz="0.0 -0.06725 -0.036"/>
+      <geometry>
+        <mesh filename="package://nndrone_description/meshes/imu.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black"/>
+      </visual>
   </link>
 
 
   <joint name="Rev1" type="continuous">
-    <origin rpy="0 0 0" xyz="0.0985 0.0695 0.055"/>
+    <origin rpy="0 0 0" xyz="0.0695 -0.0985 0.001"/>
     <parent link="base_link"/>
     <child link="prop_cw_1"/>
-    <axis xyz="-0.0 0.0 1.0"/>
+    <axis xyz="0.0 0.0 1.0"/>
   </joint>
 
   <joint name="Rev3" type="continuous">
-    <origin rpy="0 0 0" xyz="-0.0985 0.0695 0.055"/>
+    <origin rpy="0 0 0" xyz="0.0695 0.0985 0.001"/>
     <parent link="base_link"/>
     <child link="prop_ccw_3"/>
-    <axis xyz="-0.0 0.0 1.0"/>
+    <axis xyz="0.0 0.0 1.0"/>
   </joint>
 
   <joint name="Rev2" type="continuous">
-    <origin rpy="0 0 0" xyz="-0.0985 -0.0869 0.055"/>
+    <origin rpy="0 0 0" xyz="-0.0869 0.0985 0.001"/>
     <parent link="base_link"/>
     <child link="prop_cw_2"/>
-    <axis xyz="-0.0 0.0 1.0"/>
+    <axis xyz="0.0 0.0 1.0"/>
   </joint>
 
   <joint name="Rev4" type="continuous">
-    <origin rpy="0 0 0" xyz="0.0985 -0.0869 0.055"/>
+    <origin rpy="0 0 0" xyz="-0.0869 -0.0985 0.001"/>
     <parent link="base_link"/>
     <child link="prop_ccw_4"/>
-    <axis xyz="-0.0 0.0 1.0"/>
+    <axis xyz="0.0 0.0 1.0"/>
   </joint>
 
-  <joint name="Rigid5" type="fixed">
-    <origin rpy="0 0 0" xyz="0.0 0.077 0.0415"/>
+  <joint name="lidar_joint" type="fixed">
+    <origin rpy="0 0 1.5708" xyz="0.077 0.0 -0.015"/>
     <parent link="base_link"/>
     <child link="lidar_1"/>
   </joint>
 
   <joint name="rpi_cam_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.0 0.06725 0.036"/>
+    <origin rpy="0 0 0" xyz="0.06725 0.0 -0.020"/>
     <parent link="base_link"/>
     <child link="pi_camera_1"/>
   </joint>
 
   <joint name="imu_joint" type="fixed">
-      <origin rpy="0 3.141593 -1.5708" xyz="0 0 0" />
+      <origin rpy="0 3.141593 0.0" xyz="0 0 0.0" />
       <parent link="base_link" />
       <child link="imu_link" />
+      <dynamics damping="0.7"/>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
+
   </joint>
 
 </robot>
