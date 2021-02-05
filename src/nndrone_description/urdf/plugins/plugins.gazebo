@@ -3,6 +3,8 @@
     <gazebo>
         <plugin filename="libgazebo_ros_control.so" name="control">
             <robotNamespace>/nndrone</robotNamespace> 
+			<robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+			<legacyModeNS>true</legacyModeNS>
         </plugin>
     </gazebo>
 
@@ -49,41 +51,30 @@
             </plugin>
         </sensor>
     </gazebo>
+ 
     <gazebo reference="imu_link">
         <gravity>true</gravity>
         <sensor name="imu_sensor" type="imu">
             <always_on>true</always_on>
-            <update_rate>50</update_rate>
+            <update_rate>100.0</update_rate>
             <visualize>true</visualize>
-            <pose>0 0 0 0 0 0</pose>
-            <!--             
+            <pose>0 0 0 3.141593 0 0</pose>
+                      
             <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
                 <topicName>imu</topicName>
                 <bodyName>imu_link</bodyName>
-                <updateRateHZ>50.0</updateRateHZ>
+                <updateRateHZ>100.0</updateRateHZ>
                 <gaussianNoise>0.0</gaussianNoise>
                 <xyzOffset>0 0 0</xyzOffset>
                 <rpyOffset>0 0 0</rpyOffset>
                 <frameName>imu_link</frameName>
                 <initialOrientationAsReference>false</initialOrientationAsReference>
-            </plugin>
-             -->
-             <plugin filename="libgazebo_imu_plugin.so" name="rotors_gazebo_imu_plugin">
-            <!-- A good description of the IMU parameters can be found in the kalibr documentation:
-                https://github.com/ethz-asl/kalibr/wiki/IMU-Noise-Model-and-Intrinsics -->
-                <robotNamespace>/nndrone</robotNamespace> <!-- (string, required): ros namespace in which the messages are published -->
-                <linkName>imu_link</linkName> <!-- (string, required): name of the body which holds the IMU sensor -->
-                <imuTopic>imu</imuTopic> <!-- (string): name of the sensor output topic and prefix of service names (defaults to imu) -->
-                <gyroscopeNoiseDensity>0.0003394</gyroscopeNoiseDensity> <!-- Gyroscope noise density (two-sided spectrum) [rad/s/sqrt(Hz)] -->
-                <gyroscopeRandomWalk>0.000038785</gyroscopeRandomWalk> <!-- Gyroscope bias random walk [rad/s/s/sqrt(Hz)] -->
-                <gyroscopeBiasCorrelationTime>1000.0</gyroscopeBiasCorrelationTime> <!-- Gyroscope bias correlation time constant [s] -->
-                <gyroscopeTurnOnBiasSigma>0.0087</gyroscopeTurnOnBiasSigma> <!-- Gyroscope turn on bias standard deviation [rad/s] -->
-                <accelerometerNoiseDensity>0.004</accelerometerNoiseDensity> <!-- Accelerometer noise density (two-sided spectrum) [m/s^2/sqrt(Hz)] -->
-                <accelerometerRandomWalk>0.006</accelerometerRandomWalk> <!-- Accelerometer bias random walk. [m/s^2/s/sqrt(Hz)] -->
-                <accelerometerBiasCorrelationTime>300.0</accelerometerBiasCorrelationTime> <!-- Accelerometer bias correlation time constant [s] -->
-                <accelerometerTurnOnBiasSigma>0.1960</accelerometerTurnOnBiasSigma> <!-- Accelerometer turn on bias standard deviation [m/s^2] -->
-            </plugin>
+            </plugin>       
         </sensor>
+    </gazebo>
+
+    <gazebo>
+            
     </gazebo>
 <!-- ======================= ROTOR AERODYNAMICS ============================ -->
 
