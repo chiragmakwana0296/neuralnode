@@ -4,6 +4,7 @@ FROM ros:$ROS_DISTRIBUTION-ros-base
 LABEL mantainer="chiragmakwana02@gmail.com"
 
 SHELL ["/bin/bash","-c"]
+
 # Install ROS Packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
@@ -15,11 +16,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN git clone --progress --verbose https://github.com/chiragmakwana0296/ardupilot.git
 WORKDIR /ardupilot
 RUN git submodule update --init --recursive
-
-
-
-RUN pwd
-RUN ls
 
 # ROS workspace
 # ARG BUILD_TYPE
