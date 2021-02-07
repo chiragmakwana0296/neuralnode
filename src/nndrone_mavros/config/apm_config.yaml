@@ -110,7 +110,7 @@ setpoint_position:
     frame_id: "map"
     child_frame_id: "target_position"
     rate_limit: 50.0
-  mav_frame: LOCAL_NED
+  mav_frame: LOCAL_NED #BODY_NED
 
 # setpoint_velocity
 setpoint_velocity:
@@ -181,7 +181,7 @@ fake_gps:
     frame_id: "map"       # TF frame_id
     child_frame_id: "fix" # TF child_frame_id
     rate_limit: 10.0      # TF rate
-  gps_rate: 5.0           # GPS data publishing rate
+  gps_rate: 200.0           # GPS data publishing rate
 
 # landing_target
 landing_target:
@@ -232,7 +232,7 @@ vision_pose:
 # vision_speed_estimate
 vision_speed:
   listen_twist: true    # enable listen to twist topic, else listen to vec3d topic
-  twist_cov: true       # enable listen to twist with covariance topic
+  twist_cov: false       # enable listen to twist with covariance topic
 
 # vibration
 vibration:
