@@ -1,16 +1,14 @@
 <launch>
-  <arg name="world_name" default="$(find nndrone_description)/worlds/nndrone_world.world" />
+  <arg name="world_name" default="$(find nndrone_description)/world/nndrone_world.world" />
 
   <param command="$(find xacro)/xacro $(find nndrone_description)/urdf/nndrone.xacro" name="robot_description"/>
-  <node args="-param robot_description -urdf -model nndrone" name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"/>
+  <node args="-param robot_description -urdf -model nndrone -x -1.4 -y 1.2 -z 0.08 -robot_namespace nndrone" name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"/>
 
-  <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="paused" value="true"/>
+  <include file="$(find nndrone_description)/launch/gzserver.launch">
+    <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
-    <arg name="gui" value="true"/>
-    <arg name="headless" value="true"/>
-    <!-- <arg name="world_name" value="$(arg world_name)" /> -->
-
+    <arg name="headless" value="false"/>
+    <arg name="world_name" value="$(arg world_name)" />
     <arg name="debug" value="false"/>
   </include>
 </launch>

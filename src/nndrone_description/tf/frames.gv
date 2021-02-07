@@ -1,0 +1,25 @@
+digraph G {
+"map" -> "map_ned"[label="Broadcaster: /mavros\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 55.265 sec old)\nBuffer length: 0.000 sec\n"];
+"odom" -> "odom_ned"[label="Broadcaster: /mavros\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 55.265 sec old)\nBuffer length: 0.000 sec\n"];
+"base_link" -> "base_link_frd"[label="Broadcaster: /mavros\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 55.265 sec old)\nBuffer length: 0.000 sec\n"];
+"base_link" -> "gps_link"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 55.265 sec old)\nBuffer length: 0.000 sec\n"];
+"base_link" -> "lidar_1"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 55.265 sec old)\nBuffer length: 0.000 sec\n"];
+"base_link" -> "pi_camera_1"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 55.265 sec old)\nBuffer length: 0.000 sec\n"];
+"base_link" -> "prop_cw_1"[label="Broadcaster: /robot_state_publisher\nAverage rate: 12.000 Hz\nMost recent transform: 55.210 ( 0.055 sec old)\nBuffer length: 0.500 sec\n"];
+"base_link" -> "prop_cw_2"[label="Broadcaster: /robot_state_publisher\nAverage rate: 12.000 Hz\nMost recent transform: 55.210 ( 0.055 sec old)\nBuffer length: 0.500 sec\n"];
+"base_link" -> "prop_ccw_3"[label="Broadcaster: /robot_state_publisher\nAverage rate: 12.000 Hz\nMost recent transform: 55.210 ( 0.055 sec old)\nBuffer length: 0.500 sec\n"];
+"base_link" -> "prop_ccw_4"[label="Broadcaster: /robot_state_publisher\nAverage rate: 12.000 Hz\nMost recent transform: 55.210 ( 0.055 sec old)\nBuffer length: 0.500 sec\n"];
+"base_link" -> "imu_link"[label="Broadcaster: /robot_state_publisher\nAverage rate: 12.000 Hz\nMost recent transform: 55.210 ( 0.055 sec old)\nBuffer length: 0.500 sec\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 55.265"[ shape=plaintext ] ;
+ }->"map";
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 55.265"[ shape=plaintext ] ;
+ }->"odom";
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 55.265"[ shape=plaintext ] ;
+ }->"base_link";
+}

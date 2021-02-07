@@ -1,10 +1,10 @@
 #!/bin/bash
 
-export GAZEBO_MODEL_PATH=~/ardupilot_gazebo/gazebo_models:${GAZEBO_MODEL_PATH}
+#export GAZEBO_MODEL_PATH=~/ardupilot_gazebo/gazebo_models:${GAZEBO_MODEL_PATH}
 
-export GAZEBO_RESOURCE_PATH=~/ardupilot_gazebo/gazebo_worlds:${GAZEBO_RESOURCE_PATH}
+#export GAZEBO_RESOURCE_PATH=~/ardupilot_gazebo/gazebo_worlds:${GAZEBO_RESOURCE_PATH}
 
 export PARAM_FILE=$(rospack find nndrone_simulation)/param/nndrone_sitl.param
 
-# sim_vehicle.py -v ArduCopter -f gazebo-iris -w --add-param-file=$PARAM_FILE -m --mav10 --map --console -I1 
-sim_vehicle.py -v ArduCopter -f gazebo-iris -w -m --mav10 --map --console -I1 
+sim_vehicle.py -v ArduCopter -f gazebo-iris -w --add-param-file=$PARAM_FILE -m --mav10 --map --console --mavproxy-args="--streamrate=50" -I1 
+#sim_vehicle.py -v ArduCopter -f gazebo-iris -w --add-param-file=$PARAM_FILE --map --console -I1

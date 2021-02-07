@@ -75,7 +75,7 @@ class Px4Controller:
 
         #print ("self.cur_target_pose:", self.cur_target_pose, type(self.cur_target_pose))
 
-        for i in range(50):
+        for i in range(10):
             self.local_target_pub.publish(self.cur_target_pose)
             self.arm_state = self.arm()
             self.offboard_state = self.offboard()
@@ -284,7 +284,7 @@ class Px4Controller:
 
 
     def offboard(self):
-        if self.flightModeService(custom_mode='GUIDED'):
+        if self.flightModeService(custom_mode='GUIDED_NOGPS'):
             return True
         else:
             print("Vechile Offboard failed")
