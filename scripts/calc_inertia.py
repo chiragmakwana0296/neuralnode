@@ -6,7 +6,10 @@ import stl
 # Command line params:
 # 1: STL file
 # 2: Mass
-# 3: Scale
+# 3: Scale 
+# python calc_inertia.py "/home/admin/meshes/model.stl" 0.25 0.000001
+
+
 
 def getDimensions(model):
     minx = maxx = miny = maxy = minz = maxz = None
