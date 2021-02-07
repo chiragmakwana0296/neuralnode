@@ -6,13 +6,14 @@
   <xacro:include filename="$(find nndrone_description)/urdf/nndrone.gazebo" />
   <xacro:include filename="$(find nndrone_description)/urdf/plugins/plugins.gazebo" />
 
-
   <link name="base_link">
+   
     <inertial>
       <origin rpy="0 0 -1.5708" xyz="0.0 0.0 -0.055"/>
-      <mass value="0.5"/>
-      <inertia  ixx="0.0017350964305" ixy="0" ixz="0" iyy="0.00253016077525" iyz="0" izz="0.00365126915346" />
-    </inertial>
+      <mass value="1.0"/>
+      <inertia  ixx="0.00347019286099" ixy="0" ixz="0" iyy="0.0050603215505" iyz="0" izz="0.00730253830692" />
+    </inertial> 
+  
     <visual>
       <origin rpy="0 0 -1.5708" xyz="0 0 -0.055"/>
       <geometry>
@@ -23,9 +24,10 @@
     <collision>
       <origin rpy="0 0 -1.5708" xyz="0 0 -0.055"/> 
       <geometry>
+        <!-- <box size="0.6 0.1 0.2"/> -->
         <mesh filename="package://nndrone_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <surface>
+        <surface>
           <contact>
             <ode>
               <max_vel>100.0</max_vel>
@@ -43,7 +45,7 @@
   </link>
   <link name="prop_cw_1">
     <inertial>
-      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.02"/>
       <mass value="0.027"/>
       <inertia  ixx="2.16576359834e-05" ixy="0" ixz="0" iyy="2.78597602888e-05" iyz="0" izz="4.9003356158e-05" />
     </inertial>
@@ -52,7 +54,7 @@
       <geometry>
         <mesh filename="package://nndrone_description/meshes/prop_cw_1_1.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="red"/>
+      <material name="yellow"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="-0.0985 -0.0695 -0.055"/>
@@ -64,7 +66,7 @@
 
   <link name="prop_ccw_3">
     <inertial>
-      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.02"/>
       <mass value="0.027"/>
       <inertia  ixx="2.16576359834e-05" ixy="0" ixz="0" iyy="2.78597602888e-05" iyz="0" izz="4.9003356158e-05" />
     </inertial>
@@ -73,7 +75,7 @@
       <geometry>
         <mesh filename="package://nndrone_description/meshes/prop_ccw_3_1.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="red"/>
+      <material name="yellow"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0.0985 -0.0695 -0.055"/>
@@ -85,7 +87,7 @@
 
   <link name="prop_cw_2">
     <inertial>
-      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.02"/>
       <mass value="0.027"/>
       <inertia  ixx="2.16576359834e-05" ixy="0" ixz="0" iyy="2.78597602888e-05" iyz="0" izz="4.9003356158e-05" />
     </inertial>
@@ -106,7 +108,7 @@
 
   <link name="prop_ccw_4">
     <inertial>
-      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.02"/>
       <mass value="0.027"/>
       <inertia  ixx="2.16576359834e-05" ixy="0" ixz="0" iyy="2.78597602888e-05" iyz="0" izz="4.9003356158e-05" />
     </inertial>
@@ -161,17 +163,17 @@
       <inertial>
         <origin rpy="0 0 0" xyz="0 0 0" />
         <mass value="0.15" />
-        <inertia  ixx="0.000520528929149" ixy="0" ixz="0" iyy="0.000759048232575" iyz="0" izz="0.00109538074604" />
+        <inertia  ixx="0.00001" ixy="0" ixz="0" iyy="0.00002" iyz="0" izz="0.00002" />
       </inertial>
-      <visual>
-      <origin rpy="0 0 0" xyz="0.0 -0.06725 -0.036"/>
-      <geometry>
-        <mesh filename="package://nndrone_description/meshes/imu.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-      <material name="black"/>
-      </visual>
-  </link>
 
+  </link>
+  <link name='gps_link'>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0 " />
+      <mass value="0.15" />
+      <inertia ixx="0.00001" ixy="0.0" ixz="-0.0" iyy="0.00002" iyz="0.0" izz="0.00002" />
+    </inertial>
+  </link>
 
   <joint name="Rev1" type="continuous">
     <origin rpy="0 0 0" xyz="0.0695 -0.0985 0.001"/>
@@ -213,8 +215,29 @@
     <child link="pi_camera_1"/>
   </joint>
 
-  <joint name="imu_joint" type="fixed">
-      <origin rpy="0 3.141593 0.0" xyz="0 0 0.0" />
+  <joint name="gps_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <parent link="base_link" />
+    <child link="gps_link" />
+  </joint>
+
+  <joint name="imu_joint" type="revolute">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <parent link="base_link" />
+      <child link="imu_link" />
+      <axis xyz="0 0 1"/>
+      <dynamics damping="1.0" friction="0.0"/>
+      <limit effort="0.0" lower="0.0" upper="0.0" velocity="0.0"/>
+
+      <!-- <use_parent_model_frame>0</use_parent_model_frame> -->
+<!--       
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
+       -->
+      <!-- <origin rpy="0 0 0.0" xyz="0 0 0.0" />
       <parent link="base_link" />
       <child link="imu_link" />
       <dynamics damping="0.7"/>
@@ -222,7 +245,7 @@
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
         </ode>
-      </physics>
+      </physics> -->
 
   </joint>
 

@@ -1,13 +1,15 @@
 <?xml version="1.0" ?>
 <robot name="nndrone" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+<!-- 
     <gazebo>
         <plugin filename="libgazebo_ros_control.so" name="control">
             <robotNamespace>/nndrone</robotNamespace> 
 			<robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
 			<legacyModeNS>true</legacyModeNS>
         </plugin>
-    </gazebo>
+    </gazebo>  -->
 
+<!-- 
     <gazebo reference="pi_camera_1">
         <material>${sensor_color}</material>
         <mu1>0.2</mu1>
@@ -28,9 +30,6 @@
                 </clip>
                 <noise>
                     <type>gaussian</type>
-                    <!-- Noise is sampled independently per pixel on each frame.
-                        That pixel's noise value is added to each of its color
-                        channels, which at that point lie in the range [0,1]. -->
                     <mean>0.0</mean>
                     <stddev>0.007</stddev>
                 </noise>
@@ -51,15 +50,14 @@
             </plugin>
         </sensor>
     </gazebo>
- 
+  -->
     <gazebo reference="imu_link">
         <gravity>true</gravity>
         <sensor name="imu_sensor" type="imu">
-            <always_on>true</always_on>
-            <update_rate>100.0</update_rate>
-            <visualize>true</visualize>
             <pose>0 0 0 3.141593 0 0</pose>
-                      
+            <always_on>1</always_on>
+            <update_rate>100.0</update_rate>
+            <topic>//imu</topic>                      
             <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
                 <topicName>imu</topicName>
                 <bodyName>imu_link</bodyName>
@@ -68,17 +66,17 @@
                 <xyzOffset>0 0 0</xyzOffset>
                 <rpyOffset>0 0 0</rpyOffset>
                 <frameName>imu_link</frameName>
-                <initialOrientationAsReference>false</initialOrientationAsReference>
-            </plugin>       
+                <initialOrientationAsReference>0</initialOrientationAsReference>
+            </plugin>  
+
         </sensor>
     </gazebo>
 
-    <gazebo>
-            
-    </gazebo>
+
 <!-- ======================= ROTOR AERODYNAMICS ============================ -->
 
     <!-- =========== PROP 1 ============= -->
+    
     <gazebo>
         <plugin name="prop_cw_1_blade_1" filename="libLiftDragPlugin.so">
             <a0>0.3</a0>
@@ -320,7 +318,7 @@
             <modelXYZToAirplaneXForwardZDown>0 0 0 3.141593 0 0</modelXYZToAirplaneXForwardZDown>
             <gazeboXYZToNED>0 0 0 3.141593 0 0</gazeboXYZToNED>
             <imuName>imu_sensor</imuName>
-            <connectionTimeoutMaxCount>10</connectionTimeoutMaxCount>
+            <connectionTimeoutMaxCount>5</connectionTimeoutMaxCount>
             <control channel="0">
             <!--
                 incoming control command [0, 1]
