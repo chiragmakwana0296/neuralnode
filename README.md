@@ -1,6 +1,8 @@
 # neuralnode
-Autonomous Drone Operation Platform
-
+### Autonomous Drone Operation Platform
+- Simulate --> Verify --> Deploy --> Scale Pipeline
+- Scale upto 100 drone swarm members
+- For Hardware Test use sim_time = real
 ## nnDrone
 
 <img src=doc/images/nngaz.png>
