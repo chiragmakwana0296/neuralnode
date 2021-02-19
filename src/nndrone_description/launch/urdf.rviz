@@ -7,7 +7,6 @@ Panels:
         - /Global Options1
         - /Status1
         - /RobotModel1
-        - /TF1
         - /TF1/Frames1
       Splitter Ratio: 0.5
     Tree Height: 410
@@ -70,11 +69,14 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        gps_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         imu_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
         lidar_1:
           Alpha: 1
           Show Axes: false
@@ -120,6 +122,8 @@ Visualization Manager:
           Value: true
         base_link_frd:
           Value: false
+        gps_link:
+          Value: true
         imu_link:
           Value: true
         lidar_1:
@@ -151,6 +155,8 @@ Visualization Manager:
         base_link:
           base_link_frd:
             {}
+          gps_link:
+            {}
           imu_link:
             {}
           lidar_1:
@@ -165,13 +171,31 @@ Visualization Manager:
             {}
           prop_cw_2:
             {}
+        map:
+          map_ned:
+            {}
       Update Interval: 0
+      Value: true
+    - Alpha: 1
+      Axes Length: 1
+      Axes Radius: 0.10000000149011612
+      Class: rviz/Pose
+      Color: 255; 25; 0
+      Enabled: true
+      Head Length: 0.30000001192092896
+      Head Radius: 0.10000000149011612
+      Name: Pose
+      Shaft Length: 1
+      Shaft Radius: 0.05000000074505806
+      Shape: Arrow
+      Topic: /mavros/local_position/pose
+      Unreliable: false
       Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: base_link
+    Fixed Frame: map
     Frame Rate: 30
   Name: root
   Tools:
@@ -195,7 +219,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 0.42078280448913574
+      Distance: 1.381207823753357
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -210,10 +234,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.46979597210884094
+      Pitch: 0.739795982837677
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 5.284446716308594
+      Yaw: 5.344446182250977
     Saved: ~
 Window Geometry:
   Displays:

@@ -56,12 +56,12 @@
         <sensor name="imu_sensor" type="imu">
             <pose>0 0 0 3.141593 0 0</pose>
             <always_on>1</always_on>
-            <update_rate>100.0</update_rate>
+            <update_rate>1000.0</update_rate>
             <topic>//imu</topic>                      
             <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
                 <topicName>imu</topicName>
                 <bodyName>imu_link</bodyName>
-                <updateRateHZ>100.0</updateRateHZ>
+                <updateRateHZ>1000.0</updateRateHZ>
                 <gaussianNoise>0.0</gaussianNoise>
                 <xyzOffset>0 0 0</xyzOffset>
                 <rpyOffset>0 0 0</rpyOffset>
@@ -260,9 +260,9 @@
             <cla_stall>-0.025</cla_stall>
             <cda_stall>0.0</cda_stall>
             <cma_stall>0.0</cma_stall>
-            <area>0.002</area>
+            <area>0.01</area>
             <air_density>1.2041</air_density>
-            <cp>0.084 0 0</cp>
+            <cp>0.0384 0 0</cp>
             <forward>0 1 0</forward>
             <upward>0 0 1</upward>
             <link_name>prop_ccw_4</link_name>
@@ -278,9 +278,9 @@
             <cla_stall>-0.025</cla_stall>
             <cda_stall>0.0</cda_stall>
             <cma_stall>0.0</cma_stall>
-            <area>0.002</area>
+            <area>0.01</area>
             <air_density>1.2041</air_density>
-            <cp>-0.084 0 0</cp>
+            <cp>-0.0384 0 0</cp>
             <forward>0 -1 0</forward>
             <upward>0 0 1</upward>
             <link_name>prop_ccw_4</link_name>
