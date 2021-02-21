@@ -56,12 +56,12 @@
         <sensor name="imu_sensor" type="imu">
             <pose>0 0 0 3.141593 0 0</pose>
             <always_on>1</always_on>
-            <update_rate>100.0</update_rate>
+            <update_rate>1000.0</update_rate>
             <topic>//imu</topic>                      
             <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
                 <topicName>imu</topicName>
                 <bodyName>imu_link</bodyName>
-                <updateRateHZ>100.0</updateRateHZ>
+                <updateRateHZ>1000.0</updateRateHZ>
                 <gaussianNoise>0.0</gaussianNoise>
                 <xyzOffset>0 0 0</xyzOffset>
                 <rpyOffset>0 0 0</rpyOffset>
@@ -90,7 +90,7 @@
             <area>0.002</area>
             <air_density>1.2041</air_density>
             <cp>0.084 0 0</cp>
-            <forward>0 -1 0</forward>
+            <forward>0 1 0</forward>
             <upward>0 0 1</upward>
             <link_name>prop_cw_1</link_name>
         </plugin>
@@ -108,7 +108,7 @@
             <area>0.002</area>
             <air_density>1.2041</air_density>
             <cp>-0.084 0 0</cp>
-            <forward>0 1 0</forward>
+            <forward>0 -1 0</forward>
             <upward>0 0 1</upward>
             <link_name>prop_cw_1</link_name>
         </plugin>
@@ -149,7 +149,7 @@
             <area>0.002</area>
             <air_density>1.2041</air_density>
             <cp>0.084 0 0</cp>
-            <forward>0 -1 0</forward>
+            <forward>0 1 0</forward>
             <upward>0 0 1</upward>
             <link_name>prop_cw_2</link_name>
         </plugin>
@@ -167,7 +167,7 @@
             <area>0.002</area>
             <air_density>1.2041</air_density>
             <cp>-0.084 0 0</cp>
-            <forward>0 1 0</forward>
+            <forward>0 -1 0</forward>
             <upward>0 0 1</upward>
             <link_name>prop_cw_2</link_name>
         </plugin>
@@ -206,7 +206,7 @@
             <area>0.002</area>
             <air_density>1.2041</air_density>
             <cp>0.084 0 0</cp>
-            <forward>0 1 0</forward>
+            <forward>0 -1 0</forward>
             <upward>0 0 1</upward>
             <link_name>prop_ccw_3</link_name>
         </plugin>
@@ -224,7 +224,7 @@
             <area>0.002</area>
             <air_density>1.2041</air_density>
             <cp>-0.084 0 0</cp>
-            <forward>0 -1 0</forward>
+            <forward>0 1 0</forward>
             <upward>0 0 1</upward>
             <link_name>prop_ccw_3</link_name>
         </plugin>
@@ -263,7 +263,7 @@
             <area>0.002</area>
             <air_density>1.2041</air_density>
             <cp>0.084 0 0</cp>
-            <forward>0 1 0</forward>
+            <forward>0 -1 0</forward>
             <upward>0 0 1</upward>
             <link_name>prop_ccw_4</link_name>
         </plugin>
@@ -281,11 +281,12 @@
             <area>0.002</area>
             <air_density>1.2041</air_density>
             <cp>-0.084 0 0</cp>
-            <forward>0 -1 0</forward>
+            <forward>0 1 0</forward>
             <upward>0 0 1</upward>
             <link_name>prop_ccw_4</link_name>
         </plugin>
     </gazebo>
+
 <!--     
     <gazebo>
         <plugin name="prop_ccw_4_blade_3" filename="libLiftDragPlugin.so">
@@ -337,7 +338,7 @@
                 <cmd_max>2.5</cmd_max>
                 <cmd_min>-2.5</cmd_min>
                 <jointName>Rev1</jointName>
-                <multiplier>-800</multiplier>
+                <multiplier>838</multiplier>
                 <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
             </control>
             <control channel="1">
@@ -351,7 +352,7 @@
                 <cmd_max>2.5</cmd_max>
                 <cmd_min>-2.5</cmd_min>
                 <jointName>Rev2</jointName>
-                <multiplier>-800</multiplier>
+                <multiplier>838</multiplier>
                 <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
             </control>
             <control channel="2">
@@ -365,7 +366,7 @@
                 <cmd_max>2.5</cmd_max>
                 <cmd_min>-2.5</cmd_min>
                 <jointName>Rev3</jointName>
-                <multiplier>800</multiplier>
+                <multiplier>-838</multiplier>
                 <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
             </control>
             <control channel="3">
@@ -379,11 +380,12 @@
                 <cmd_max>2.5</cmd_max>
                 <cmd_min>-2.5</cmd_min>
                 <jointName>Rev4</jointName>
-                <multiplier>800</multiplier>
+                <multiplier>-838</multiplier>
                 <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
             </control>
         </plugin>
     </gazebo>
+
 <!-- 
     <plugin name='mavlink_interface' filename='libgazebo_mavlink_interface.so'>
       <robotNamespace/>

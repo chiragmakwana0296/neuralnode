@@ -19,5 +19,9 @@
 		<arg name="fcu_protocol" value="$(arg fcu_protocol)" />
 		<arg name="respawn_mavros" default="$(arg respawn_mavros)" />
 	</include>
-	
+	<node name="vision_pose_pub_node" pkg="nndrone_mavros" type="vision_pose.py">
+		<remap from="/odom_topic" to="/nndrone/t_camera/odom/sample"/>
+        <remap from="/robot_pose" to="/mavros/vision_pose/pose"/>
+        <remap from="/robot_vel" to="/mavros/vision_speed/speed_twist"/>
+	</node>
 </launch>
