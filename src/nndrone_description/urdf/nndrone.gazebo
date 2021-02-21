@@ -6,12 +6,19 @@
 <xacro:property name="prop_color_back" value="Gazebo/Red" />
 <xacro:property name="sensor_color" value="Gazebo/Black" />
 
+<gazebo reference="">
+  <static>0</static> 
+</gazebo>
+
 <gazebo reference="base_link">
   <material>${body_color}</material>
-  <mu1>100.0</mu1>
-  <mu2>100.0</mu2>
+  <mu1>100000.0</mu1>
+  <mu2>100000.0</mu2>
   <selfCollide>false</selfCollide>
   <gravity>true</gravity>
+  <max_vel>100.0</max_vel>
+  <min_depth>0.001</min_depth>
+  <!-- <dampingFactor>0.02</dampingFactor> -->
 </gazebo>
 
 <gazebo reference="prop_cw_1">
@@ -19,6 +26,7 @@
   <!-- <mu1>0.2</mu1> -->
   <!-- <mu2>0.2</mu2> -->
   <selfCollide>false</selfCollide>
+
 </gazebo>
 
 <gazebo reference="prop_ccw_3">
@@ -62,40 +70,23 @@
   <!-- <mu2>0.2</mu2> -->
   <selfCollide>false</selfCollide>
 </gazebo>
-<gazebo reference="base_link">
-  <surface>
-    <contact>
-      <ode>
-        <max_vel>0.0</max_vel>
-        <min_depth>0.005</min_depth>
-      </ode>
-    </contact>
-    <friction>
-      <ode>
-        <mu>100.0</mu>
-        <mu2>100.0</mu2>
-      </ode>
-    </friction>
-  </surface>
-</gazebo>
 
 <gazebo reference="Rev1">
-  <axis>
-        <xyz>0 0 1</xyz>
-        <limit>
-          <lower>-1e+16</lower>
-          <upper>1e+16</upper>
-        </limit>
-        <dynamics>
-          <damping>0.004</damping>
-        </dynamics>
-        <use_parent_model_frame>1</use_parent_model_frame>
-      </axis>
-      <physics>
-        <ode>
-          <implicit_spring_damper>1</implicit_spring_damper>
-        </ode>
-      </physics>
+  <implicitSpringDamper>true</implicitSpringDamper>
+</gazebo>
+<gazebo reference="Rev3">
+  <implicitSpringDamper>true</implicitSpringDamper>
+</gazebo>
+<gazebo reference="Rev2">
+  <implicitSpringDamper>true</implicitSpringDamper>
+</gazebo>
+<gazebo reference="Rev4">
+  <implicitSpringDamper>true</implicitSpringDamper>
+</gazebo>
+
+
+<gazebo reference="imu_joint">
+  <implicitSpringDamper>true</implicitSpringDamper>
 </gazebo>
 
 </robot>
