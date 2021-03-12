@@ -19,15 +19,18 @@ services:
     network_mode: "host"
     environment:
       - ROS_DISTRO=melodic
+      - LD_LIBRARY_PATH=/opt/vc/lib
     volumes:
       - "./src:/root/catkin_ws/src:rw"
+      - "/opt/vc:/opt/vc:rw"
     # ports:
     #   - "11311:11311"
     #   - "19997:19997"
-    # devices:
-    #  - /dev/ttyACM0:/dev/ttyACM0
+      # - "9000:9000"
+    devices:
+      - /dev/vchiq
     #  - /dev/input/js0
-    command: roscore
+    command: roslaunch /ros-app.launch
 
   ##############################################################
   ## Container for ROS-Install Workspace
