@@ -18,60 +18,98 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-${ROS_DISTRO}-joystick-drivers \
     ros-${ROS_DISTRO}-tf \
     ros-${ROS_DISTRO}-rosbridge-suite \  
-    ros-${ROS_DISTRO}-perception=1.4.1-0* \
     && rm -rf /var/lib/apt/lists/*
 
 # Install mavros dependancies
 RUN sudo wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
 RUN bash ./install_geographiclib_datasets.sh
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    gstreamer1.0-tools \
-    libgstreamer1.0-dev \
-    libgstreamer-plugins-base1.0-dev \
-    libgstreamer-plugins-good1.0-dev \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    ros-${ROS_DISTRO}-raspicam-node \
-    && rm -rf /var/lib/apt/lists/*
+# RUN apt-get update && apt-get install -y --no-install-recommends \
+#     gstreamer1.0-tools \
+#     libgstreamer1.0-dev \
+#     libgstreamer-plugins-base1.0-dev \
+#     libgstreamer-plugins-good1.0-dev \
+#     && rm -rf /var/lib/apt/lists/*
 
 
 # Install Python Modules
 RUN pip install -f /requirements/python-moules.txt
 
-# ROS workspace
-ARG BUILD_TYPE
-ENV BUILD_ENV=${BUILD_TYPE}
-ENV CATKIN_WS=/root/catkin_ws
-RUN mkdir -p $CATKIN_WS/src
-WORKDIR $CATKIN_WS/src
-COPY ./src .
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ros-${ROS_DISTRO}-perception \
+    && rm -rf /var/lib/apt/lists/*
 
-# build and install packages
-RUN if [ ${BUILD_ENV} = "install" ]; \
-        then source /opt/ros/$ROS_DISTRO/setup.bash \
-            && apt-get update \
-            && cd $CATKIN_WS \
-            && rosdep install -y --from-paths . --ignore-src --rosdistro $ROS_DISTRO \
-            && catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/$ROS_DISTRO \
-            && rm -R src ; \
-    elif [ $BUILD_ENV = "devel" ]; \
-        then source /opt/ros/$ROS_DISTRO/setup.bash \
-            && apt-get update \
-            && cd $CATKIN_WS \
-            && rosdep install -y --from-paths . --ignore-src --rosdistro $ROS_DISTRO \
-            && catkin_make ; \
-    else echo "Please select build types: [install/devel]" ; \
-    fi
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    software-properties-common \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY ./scripts/entrypoint.sh /
-COPY ./scripts/ros-app.launch /
+RUN apt-add-repository ppa:borglab/gtsam-release-4.0 && apt-get update && apt-get install -y --no-install-recommends \
+    libgtsam-dev \
+    libgtsam-unstable-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-EXPOSE 11311
-EXPOSE 19997
-EXPOSE 9090
-EXPOSE 9000
+RUN apt-add-repository ppa:ubuntu-toolchain-r/test && apt-get update && apt-get install -y --no-install-recommends \
+    gcc-7 \
+    g++-7 \
+    && rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT ["/entrypoint.sh"]
+RUN git clone --recursive https://github.com/berndpfrommer/tagslam_root.git
+
+WORKDIR /tagslam_root
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python-catkin-tools \
+    apt-transport-https \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
+
+RUN apt-add-repository 'deb https://apt.kitware.com/ubuntu/ xenial main' && apt-get update \
+    # && apt-get install -y --no-install-recommends kitware-archive-keyring \
+    && apt-key --keyring /etc/apt/trusted.gpg del C1F34CDD40CD72DA \
+    && apt-get update && apt-get install -y --no-install-recommends \
+    cmake \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN source /opt/ros/${ROS_DISTRO}/setup.bash \
+    && catkin config -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=g++-7 && catkin build
+
+
+
+
+# # ROS workspace
+# ARG BUILD_TYPE
+# ENV BUILD_ENV=${BUILD_TYPE}
+# ENV CATKIN_WS=/root/catkin_ws
+# RUN mkdir -p $CATKIN_WS/src
+# WORKDIR $CATKIN_WS/src
+# COPY ./src .
+
+# # build and install packages
+# RUN if [ ${BUILD_ENV} = "install" ]; \
+#         then source /opt/ros/$ROS_DISTRO/setup.bash \
+#             && apt-get update \
+#             && cd $CATKIN_WS \
+#             && rosdep install -y --from-paths . --ignore-src --rosdistro $ROS_DISTRO \
+#             && catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/$ROS_DISTRO \
+#             && rm -R src ; \
+#     elif [ $BUILD_ENV = "devel" ]; \
+#         then source /opt/ros/$ROS_DISTRO/setup.bash \
+#             && apt-get update \
+#             && cd $CATKIN_WS \
+#             && rosdep install -y --from-paths . --ignore-src --rosdistro $ROS_DISTRO \
+#             && catkin_make ; \
+#     else echo "Please select build types: [install/devel]" ; \
+#     fi
+
+# COPY ./scripts/entrypoint.sh /
+# COPY ./scripts/ros-app.launch /
+
+# EXPOSE 11311
+# EXPOSE 19997
+# EXPOSE 9090
+# EXPOSE 9000
+
+# ENTRYPOINT ["/entrypoint.sh"]
 
