@@ -1,0 +1,26 @@
+image_width: 410
+image_height: 308
+camera_name: camerav2_410x308
+camera_matrix:
+  rows: 3
+  cols: 3
+  data: [ 385.30407,    0.     ,  201.97606,
+            0.     ,  383.81055,  150.91472,
+            0.     ,    0.     ,    1.     ]
+camera_model: plumb_bob
+distortion_coefficients:
+  rows: 1
+  cols: 5
+  data: [0.059862, -0.202185, 0.003369, 0.000843, 0.000000]
+rectification_matrix:
+  rows: 3
+  cols: 3
+  data: [ 1.,  0.,  0.,
+          0.,  1.,  0.,
+          0.,  0.,  1.]
+projection_matrix:
+  rows: 3
+  cols: 4
+  data: [ 385.63373,    0.     ,  202.16047,    0.     ,
+            0.     ,  385.58743,  151.54333,    0.     ,
+            0.     ,    0.     ,    1.     ,    0.     ]
