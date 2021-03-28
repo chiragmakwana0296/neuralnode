@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.3"
 services:
   ##############################################################
   ## Container for ROS-Devel Workspace
@@ -50,11 +50,13 @@ services:
     environment:
       - ROS_DISTRO=kinetic
       - LD_LIBRARY_PATH=/opt/vc/lib
-      - ROS_MASTER_URI=http://192.168.99.219:11311/
-      - ROS_HOSTNAME=192.168.99.10
-      - ROS_IP=192.168.99.10
+      - ROS_MASTER_URI=http://192.168.204.219:11311/
+      - ROS_HOSTNAME=chirag-desktop.local
+      - ROS_IP=chirag-desktop.local
+    volumes:
+      - "./src:/root:rw"
     devices: 
-      - /dev/vcsm-cma
+      - /dev/vcsm
       - /dev/vchiq
-    command: roslaunch raspicam_node camerav2_410x308_30fps.launch --wait --screen
+    command: roslaunch /root/visual_odometry/raspicam_node/launch/camerav2_410x308_30fps.launch enable_raw:=true --wait --screen  #raspicam_node camerav2_410x308_30fps.launch --wait --screen
  

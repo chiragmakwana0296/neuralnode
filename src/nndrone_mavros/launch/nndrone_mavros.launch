@@ -1,6 +1,6 @@
 <launch>
-	    <arg name="fcu_url" default="udp://:14561@127.0.0.1:14560" />
-        <arg name="gcs_url" value="udp://:14551@127.0.0.1:14550" /> 
+	    <arg name="fcu_url" default="/dev/ttyAMA0:921600" />
+            <arg name="gcs_url" value="udp://:14551@0.0.0.0:14550" /> 
 	    <arg name="tgt_system" default="1" />
 	    <arg name="tgt_component" default="1" />
 	    <arg name="log_output" default="screen" />
