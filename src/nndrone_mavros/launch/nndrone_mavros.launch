@@ -1,10 +1,10 @@
 <launch>
 	    <arg name="fcu_url" default="/dev/ttyAMA0:921600" />
-        <arg name="gcs_url" value="udp://:14551@192.168.169.219:14550" /> 
+            <arg name="gcs_url" value="udp://:14551@0.0.0.0:14550" /> 
 	    <arg name="tgt_system" default="1" />
 	    <arg name="tgt_component" default="1" />
 	    <arg name="log_output" default="screen" />
-	    <arg name="fcu_protocol" default="v1.0" />
+	    <arg name="fcu_protocol" default="v2.0" />
 	    <arg name="respawn_mavros" default="false" />
 
 	<include file="$(find nndrone_mavros)/launch/mavros_node.launch">
