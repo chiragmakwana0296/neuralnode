@@ -1,0 +1,41 @@
+<launch>
+    <!-- Set this to your camera's name -->
+    <arg name="cam_name" value="camerav2" />
+    <arg name="tag_name" value="A3_bundle" />
+
+
+
+    <!-- This node provides image rectification -->
+    <node name="image_proc" pkg="image_proc" type="image_proc" ns="$(arg cam_name)"/>
+
+
+    <!-- This node will launch apriltag_ros -->
+    <arg name="launch_prefix" default="" /> 
+    <arg name="node_namespace" default="apriltag_ros_continuous_node" />
+    <arg name="camera_name" default="/$(arg cam_name)" />
+    <arg name="camera_frame" default="camera_frame" />
+    <arg name="image_topic" default="image_rect" />
+
+    <!-- Set parameters -->
+    <rosparam command="load" file="$(find apriltag_ros)/config/settings.yaml" ns="$(arg node_namespace)" />
+    <rosparam command="load" file="$(find apriltag_ros)/config/$(arg tag_name).yaml" ns="$(arg node_namespace)" />
+
+    <node pkg="apriltag_ros" type="apriltag_ros_continuous_node" name="$(arg node_namespace)" clear_params="true" output="screen" launch-prefix="$(arg launch_prefix)" >
+        <remap from="image_rect" to="$(arg camera_name)/$(arg image_topic)" />
+        <remap from="camera_info" to="$(arg camera_name)/camera_info" />
+
+        <param name="camera_frame" type="str" value="$(arg camera_frame)" />
+        <param name="publish_tag_detections_image" type="bool" value="true" /> 
+    </node>
+
+
+    <!-- This node will launch frame conversion from vision pose (tf) to mavros pose -->
+    <node pkg="vision_to_mavros" type="vision_to_mavros_node" name="apriltags_to_mavros" output="screen" >
+
+        <param name="target_frame_id" value="$(arg tag_name)" />
+        <param name="source_frame_id" value="$(arg cam_name)" />
+        <param name="output_rate" value="30" />
+        <remap from="vision_pose" to="/mavros/vision_pose/pose" />
+    </node>
+
+</launch>
