@@ -50,9 +50,9 @@ services:
     environment:
       - ROS_DISTRO=kinetic
       - LD_LIBRARY_PATH=/opt/vc/lib
-      - ROS_MASTER_URI=http://192.168.204.219:11311/
-      - ROS_HOSTNAME=chirag-desktop.local
-      - ROS_IP=chirag-desktop.local
+      - ROS_MASTER_URI=http://192.168.29.219:11311/
+      - ROS_HOSTNAME=192.168.29.10
+      - ROS_IP=192.168.29.10
     volumes:
       - "./src:/root:rw"
     devices: 

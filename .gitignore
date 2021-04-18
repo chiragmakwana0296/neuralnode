@@ -55,3 +55,4 @@ CATKIN_IGNORE
 *.bin
 *.tlog
 *.raw
+.bash_history
