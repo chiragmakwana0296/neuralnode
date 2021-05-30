@@ -1,6 +1,10 @@
 <launch>
-  <include file="$(find nndrone_description)/launch/gazebo.launch" />
-  <include file="$(find nndrone_description)/launch/display.launch" />
-  <!-- <include file="$(find nndrone_mavros)/launch/nndrone_mavros.launch" /> -->
-  <!-- <node pkg="nndrone_simulation" type="sitl" name="sitl" output="screen"/> -->
+  <arg name="world_name" default="$(find nndrone_description)/world/nndrone_world2.world" />
+
+  <include file="$(find nndrone_description)/launch/gazebo.launch">
+    <arg name="world_name" value="$(arg world_name)" />
+  </include>
+  <!-- <include file="$(find nndrone_description)/launch/display.launch" /> -->
+  <include file="$(find nndrone_simulation)/launch/nndrone_mavros_sim.launch" />
+  <node pkg="nndrone_simulation" type="sitl" name="sitl" output="screen"/>
 </launch>

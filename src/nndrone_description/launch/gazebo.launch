@@ -1,5 +1,5 @@
 <launch>
-  <arg name="world_name" default="$(find nndrone_description)/world/nndrone_world.world" />
+  <arg name="world_name" default="$(find nndrone_description)/world/nndrone_world2.world" />
 
   <param command="$(find xacro)/xacro $(find nndrone_description)/urdf/nndrone.xacro" name="robot_description"/>
   <node args="-param robot_description -urdf -model nndrone -x 0.0 -y 0.0 -z 0.0 -robot_namespace nndrone" name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"/>
@@ -11,4 +11,5 @@
     <arg name="world_name" value="$(arg world_name)" />
     <arg name="debug" value="false"/>
   </include>
+  <include file="$(find nndrone_description)/launch/gzclient.launch" />
 </launch>
