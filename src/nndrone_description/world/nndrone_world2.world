@@ -35,11 +35,165 @@
       <include>
       <uri>model://sun</uri>
     </include>
+
     <include>
       <pose>132.247574 -83.501556 -0.129000</pose>
       <uri>model://baylands</uri>
     </include>
-    
-    
+
+    <include>
+      <pose>0 0 0.017</pose>
+      <uri>model://Apriltag25_09_00001</uri>
+    </include>
+
+    <include>
+      <pose>2 0 0.017</pose>
+      <uri>model://Apriltag25_09_00002</uri>
+    </include>
+
+    <include>
+      <pose>4 0 0.044</pose>
+      <uri>model://Apriltag25_09_00003</uri>
+    </include>
+
+    <include>
+      <pose>6 0 0.048</pose>
+      <uri>model://Apriltag25_09_00004</uri>
+    </include>
+
+    <include>
+      <pose>8 0 0.064</pose>
+      <uri>model://Apriltag25_09_00005</uri>
+    </include>
+
+    <include>
+      <pose>10 0 0.1</pose>
+      <uri>model://Apriltag25_09_00006</uri>
+    </include>
+<!-- y 2 -->
+
+
+    <include>
+      <pose>0 2 0.008</pose>
+      <uri>model://Apriltag25_09_00007</uri>
+    </include>
+
+    <include>
+      <pose>2 2 0.017</pose>
+      <uri>model://Apriltag25_09_00008</uri>
+    </include>
+
+    <include>
+      <pose>4 2 0.129000</pose>
+      <uri>model://Apriltag25_09_00009</uri>
+    </include>
+
+    <include>
+      <pose>6 2 0.129000</pose>
+      <uri>model://Apriltag25_09_00010</uri>
+    </include>
+
+    <include>
+      <pose>8 2 0.129000</pose>
+      <uri>model://Apriltag25_09_00011</uri>
+    </include>
+
+    <include>
+      <pose>10 2 0.129000</pose>
+      <uri>model://Apriltag25_09_00012</uri>
+    </include>
+<!-- y3 -->
+
+    <include>
+      <pose>0 4 0.008</pose>
+      <uri>model://Apriltag25_09_00013</uri>
+    </include>
+
+    <include>
+      <pose>2 4 0.017</pose>
+      <uri>model://Apriltag25_09_00014</uri>
+    </include>
+
+    <include>
+      <pose>4 4 0.129000</pose>
+      <uri>model://Apriltag25_09_00015</uri>
+    </include>
+
+    <include>
+      <pose>6 4 0.129000</pose>
+      <uri>model://Apriltag25_09_00016</uri>
+    </include>
+
+    <include>
+      <pose>8 4 0.129000</pose>
+      <uri>model://Apriltag25_09_00017</uri>
+    </include>
+
+    <include>
+      <pose>10 4 0.129000</pose>
+      <uri>model://Apriltag25_09_00018</uri>
+    </include>
+
+  <!-- y3 -->
+  <include>
+      <pose>0 6 0.008</pose>
+      <uri>model://Apriltag25_09_00019</uri>
+    </include>
+
+    <include>
+      <pose>2 6 0.017</pose>
+      <uri>model://Apriltag25_09_00020</uri>
+    </include>
+
+    <include>
+      <pose>4 6 0.129000</pose>
+      <uri>model://Apriltag25_09_00021</uri>
+    </include>
+
+    <include>
+      <pose>6 6 0.129000</pose>
+      <uri>model://Apriltag25_09_00022</uri>
+    </include>
+
+    <include>
+      <pose>8 6 0.129000</pose>
+      <uri>model://Apriltag25_09_00023</uri>
+    </include>
+
+    <include>
+      <pose>10 6 0.129000</pose>
+      <uri>model://Apriltag25_09_00024</uri>
+    </include>
+    <!-- y4 -->
+    <include>
+      <pose>0 8 0.008</pose>
+      <uri>model://Apriltag25_09_00025</uri>
+    </include>
+
+    <include>
+      <pose>2 8 0.017</pose>
+      <uri>model://Apriltag25_09_00026</uri>
+    </include>
+
+    <include>
+      <pose>4 8 0.129000</pose>
+      <uri>model://Apriltag25_09_00027</uri>
+    </include>
+
+    <include>
+      <pose>6 8 0.129000</pose>
+      <uri>model://Apriltag25_09_00028</uri>
+    </include>
+
+    <include>
+      <pose>8 8 0.129000</pose>
+      <uri>model://Apriltag25_09_00029</uri>
+    </include>
+
+    <include>
+      <pose>10 8 0.129000</pose>
+      <uri>model://Apriltag25_09_00030</uri>
+    </include>
+    <!-- /home/chirag/ros_ws/src/neuralnode/src/gazebo_apriltag -->
   </world>
 </sdf>
