@@ -19,3 +19,10 @@ roslaunch nndrone_simulation nndrone_simulation.launch
 roslaunch nndrone_simulation nndrone_maos_sim.launch
 roslaunch nndrone_mavros sitl.launch 
 
+## Cloud Deployment
+start aws instance 
+
+ssh -i ~/nndrone_key.pem ubuntu@3.108.159.92
+bash ~/cloud_station_deployment/reload_server.sh
+
+url: ec2-3-108-159-92.ap-south-1.compute.amazonaws.com
