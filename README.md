@@ -16,6 +16,6 @@ Clone Ardupilot Repository
 export GAZEBO_MODEL_PATH=/home/chirag/ros_ws/src/neuralnode/src/gazebo_apriltag/models:$GAZEBO_MODEL_PATH
 ## Run
 roslaunch nndrone_simulation nndrone_simulation.launch
-
-rosrun nndrone_simulation sitl
+roslaunch nndrone_simulation nndrone_maos_sim.launch
+roslaunch nndrone_mavros sitl.launch 
 

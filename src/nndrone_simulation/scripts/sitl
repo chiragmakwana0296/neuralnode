@@ -5,6 +5,8 @@
 #export GAZEBO_RESOURCE_PATH=~/ardupilot_gazebo/gazebo_worlds:${GAZEBO_RESOURCE_PATH}
 
 export PARAM_FILE=$(rospack find nndrone_simulation)/param/nndrone_sitl.param
-echo $PARAM_FILE
-# sim_vehicle.py -v ArduCopter -f gazebo-iris -w --add-param-file=$PARAM_FILE -m --mav10 --console --mavproxy-args="--streamrate=50" -I1 
-sim_vehicle.py -v ArduCopter -f gazebo-iris --wipe-eeprom --add-param-file=$PARAM_FILE -m --mav10 --console -I1
+export CLOUDSTATION_IP=3.108.159.92
+export UDP_PORT=14550
+# sim_vehicle.py -v ArduCopter -f gazebo-iris --wipe-eeprom --add-param-file=$PARAM_FILE -m --mav10 --console -I1 # Local deployment
+
+sim_vehicle.py -v ArduCopter -f gazebo-iris --wipe-eeprom --add-param-file=$PARAM_FILE -m --mav10 --out=udp:$CLOUDSTATION_IP:$UDP_PORT --console -I1 # Cloud
