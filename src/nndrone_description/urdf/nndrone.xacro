@@ -171,6 +171,7 @@
   <origin rpy="0 0 0" xyz="0.1 0 0.0"/>
   </xacro:realsense_T265> 
 -->
+  
 
  <joint name="Rev1" type="revolute">
     <origin rpy="0 0 0" xyz="0.0695 -0.0985 0.001"/>
@@ -250,7 +251,7 @@
   </joint>
 
   <joint name="rpi_cam_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.06725 0.0 -0.020"/>
+    <origin rpy="0 1.57 0" xyz="0.06725 0.0 -0.020"/>
     <parent link="base_link"/>
     <child link="pi_camera_1"/>
   </joint>

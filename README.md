@@ -18,6 +18,7 @@ export GAZEBO_MODEL_PATH=/home/chirag/ros_ws/src/neuralnode/src/gazebo_apriltag/
 roslaunch nndrone_simulation nndrone_simulation.launch
 roslaunch nndrone_simulation nndrone_maos_sim.launch
 roslaunch nndrone_mavros sitl.launch 
+roslaunch apriltag_mavros april_tag_continue_sim.launch
 
 ## Cloud Deployment
 start aws instance 

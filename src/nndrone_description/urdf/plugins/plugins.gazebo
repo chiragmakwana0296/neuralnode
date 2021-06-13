@@ -9,16 +9,12 @@
         </plugin>
     </gazebo>  -->
 
-<!-- 
+
     <gazebo reference="pi_camera_1">
-        <material>${sensor_color}</material>
-        <mu1>0.2</mu1>
-        <mu2>0.2</mu2>
-        <selfCollide>false</selfCollide>
         <sensor type="camera" name="camera1">
             <update_rate>20.0</update_rate>
             <camera name="bottom">
-                <horizontal_fov>2.0943951023931953</horizontal_fov>
+                <horizontal_fov>1.3962634</horizontal_fov>
                 <image>
                     <width>640</width>
                     <height>480</height>
@@ -50,7 +46,7 @@
             </plugin>
         </sensor>
     </gazebo>
-  -->
+ 
     <gazebo reference="imu_link">
         <gravity>true</gravity>
         <sensor name="imu_sensor" type="imu">
