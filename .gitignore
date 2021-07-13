@@ -57,4 +57,4 @@ CATKIN_IGNORE
 *.raw
 .bash_history
 
-./src/gazebo_apriltag/models
+/src/gazebo_apriltags/models
