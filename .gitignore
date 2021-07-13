@@ -56,3 +56,5 @@ CATKIN_IGNORE
 *.tlog
 *.raw
 .bash_history
+
+./src/gazebo_apriltag/models

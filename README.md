@@ -16,9 +16,17 @@ Clone Ardupilot Repository
 export GAZEBO_MODEL_PATH=/home/chirag/ros_ws/src/neuralnode/src/gazebo_apriltag/models:$GAZEBO_MODEL_PATH
 ## Run
 roslaunch nndrone_simulation nndrone_simulation.launch
-roslaunch nndrone_simulation nndrone_maos_sim.launch
+
+roslaunch nndrone_simulation nndrone_mavros_sim.launch
+
 roslaunch nndrone_mavros sitl.launch 
+
 roslaunch apriltag_mavros april_tag_continue_sim.launch
+
+## Swarm
+roslaunch nndrone_swarm mavros_swarm.launch
+
+./home/chirag/ros_ws/src/neuralnode/src/nndrone_swarm/scripts/sitl_swarm.sh
 
 ## Cloud Deployment
 start aws instance 

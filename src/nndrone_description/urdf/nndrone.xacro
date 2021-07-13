@@ -1,6 +1,9 @@
 <?xml version="1.0" ?>
 <robot name="nndrone" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+  <xacro:arg name="fdm_port_in" default="9002" />
+  <xacro:arg name="fdm_port_out" default="9003" />
+
   <xacro:include filename="$(find nndrone_description)/urdf/materials.xacro" />
   <!-- <xacro:include filename="$(find nndrone_description)/urdf/nndrone.trans" /> -->
   <xacro:include filename="$(find nndrone_description)/urdf/nndrone.gazebo" />
