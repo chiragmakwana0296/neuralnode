@@ -1,11 +1,13 @@
 <?xml version="1.0" ?>
 <robot name="nndrone" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+  <xacro:arg name="fdm_port_in" default="9002" />
+  <xacro:arg name="fdm_port_out" default="9003" />
+
   <xacro:include filename="$(find nndrone_description)/urdf/materials.xacro" />
   <!-- <xacro:include filename="$(find nndrone_description)/urdf/nndrone.trans" /> -->
   <xacro:include filename="$(find nndrone_description)/urdf/nndrone.gazebo" />
   <xacro:include filename="$(find nndrone_description)/urdf/plugins/plugins.gazebo" />
-  <xacro:include filename="$(find realsense_ros_gazebo)/xacro/tracker.xacro"/>
 
   <link name="base_link">
      <inertial>
@@ -24,6 +26,7 @@
     <collision> 
       <origin rpy="0 0 0" xyz="0 0 -0.0"/> 
       <geometry>
+        <!-- <mesh filename="package://nndrone_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/> -->
           <box  size="0.18 0.2 0.1" />
       </geometry>
     </collision>
@@ -166,12 +169,6 @@
     </inertial>
   </link>
 
-<!-- 
-  <xacro:realsense_T265 sensor_name="t_camera" parent_link="base_link" rate="30.0">
-  <origin rpy="0 0 0" xyz="0.1 0 0.0"/>
-  </xacro:realsense_T265> 
--->
-  
 
  <joint name="Rev1" type="revolute">
     <origin rpy="0 0 0" xyz="0.0695 -0.0985 0.001"/>
@@ -209,40 +206,6 @@
     <limit lower="-1e+16" upper="1e+16" effort="5.0" velocity="2100"/>
   </joint>
 
-
-<!-- 
-  <joint name="Rev1" type="continuous">
-    <origin rpy="0 0 0" xyz="0.0695 -0.0985 0.001"/>
-    <parent link="base_link"/>
-    <child link="prop_cw_1"/>
-    <axis xyz="0.0 0.0 1.0"/>
-    <dynamics damping="0.004"/>
-  </joint>
-
-  <joint name="Rev3" type="continuous">
-    <origin rpy="0 0 0" xyz="0.0695 0.0985 0.001"/>
-    <parent link="base_link"/>
-    <child link="prop_ccw_3"/>
-    <axis xyz="0.0 0.0 1.0"/>
-    <dynamics damping="0.004"/>
-  </joint>
-
-  <joint name="Rev2" type="continuous">
-    <origin rpy="0 0 0" xyz="-0.0869 0.0985 0.001"/>
-    <parent link="base_link"/>
-    <child link="prop_cw_2"/>
-    <axis xyz="0.0 0.0 1.0"/>
-    <dynamics damping="0.004"/>
-  </joint>
-
-  <joint name="Rev4" type="continuous">
-    <origin rpy="0 0 0" xyz="-0.0869 -0.0985 0.001"/>
-    <parent link="base_link"/>
-    <child link="prop_ccw_4"/>
-    <axis xyz="0.0 0.0 1.0"/>
-    <dynamics damping="0.004"/>
-  </joint> 
-  -->
 
   <joint name="lidar_joint" type="fixed">
     <origin rpy="0 0 1.5708" xyz="0.077 0.0 -0.015"/>

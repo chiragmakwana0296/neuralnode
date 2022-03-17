@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+	
+<launch>
+	<arg name="number_of_drones" default="1"/>
+	<arg name="world_name" default="$(find nndrone_description)/world/nndrone_world2.world" />	
+	<include file="$(find nndrone_description)/launch/gzserver.launch">
+		<arg name="paused" value="false"/>
+		<arg name="use_sim_time" value="true"/>
+		<arg name="headless" value="false"/>
+		<!-- <arg name="world_name" value="$(arg world_name)" /> -->
+		<arg name="debug" value="false"/>
+	</include>
+  	
+	<include file="$(find nndrone_description)/launch/gzclient.launch"/>
+	
+	<group ns="nndrone0" if="$(eval number_of_drones > 0 )" >
+		<param name="tf_prefix" value="nndrone0_tf" />
+		<include file="$(find nndrone_swarm)/launch/spawn_drone.launch">
+			<arg name="init_pose" value="-x 0 -y 0.0 -z 0" />
+			<arg name="fdm_port_in" value="9002" />
+			<arg name="fdm_port_out" value="9003" />
+			<arg name="drone_name"  value="nndrone0" />
+		</include>
+		<node pkg="mavros" type="mavros_node" name="mavros" required="false" clear_params="true" respawn="false" output="screen" >
+			<param name="fcu_url" value="udp://:14551@127.0.0.1:14550" />
+			<param name="gcs_url" value="" />
+			<param name="target_system_id" value="1" />
+			<param name="target_component_id" value="1" />
+			<param name="fcu_protocol" value="v2.0" />
+
+			<!-- load blacklist, config -->
+			<rosparam command="load" file="$(find mavros)/launch/apm_pluginlists.yaml" />
+			<rosparam command="load" file="$(find mavros)/launch/apm_config.yaml" />
+		</node>
+	</group>
+
+	<group ns="nndrone1" if="$(eval number_of_drones > 1 )">	
+		<param name="tf_prefix" value="nndrone1_tf" />
+		<include file="$(find nndrone_swarm)/launch/spawn_drone.launch">
+			<arg name="init_pose" value="-x 0 -y 1.0 -z 0" />
+			<arg name="fdm_port_in" value="9012" />
+			<arg name="fdm_port_out" value="9013" />
+			<arg name="drone_name"  value="nndrone1" />
+		</include>	
+		<node pkg="mavros" type="mavros_node" name="mavros" required="false" clear_params="true" respawn="false" output="screen" >
+			<param name="fcu_url" value="udp://:14561@127.0.0.1:14560" />
+			<param name="gcs_url" value="" />
+			<param name="target_system_id" value="2" />
+			<param name="target_component_id" value="1" />
+			<param name="fcu_protocol" value="v2.0" />
+
+			<!-- load blacklist, config -->
+			<rosparam command="load" file="$(find mavros)/launch/apm_pluginlists.yaml" />
+			<rosparam command="load" file="$(find mavros)/launch/apm_config.yaml" />
+		</node>
+	</group>
+
+
+	<group ns="nndrone2" if="$(eval number_of_drones > 2 )">	
+		<param name="tf_prefix" value="nndrone2_tf" />
+		<include file="$(find nndrone_swarm)/launch/spawn_drone.launch">
+			<arg name="init_pose" value="-x 0 -y 2.0 -z 0" />
+			<arg name="fdm_port_in" value="9022" />
+			<arg name="fdm_port_out" value="9023" />
+			<arg name="drone_name"  value="nndrone2" />
+		</include>	
+		<node pkg="mavros" type="mavros_node" name="mavros" required="false" clear_params="true" respawn="false" output="screen" >
+			<param name="fcu_url" value="udp://:14571@127.0.0.1:14570" />
+			<param name="gcs_url" value="" />
+			<param name="target_system_id" value="3" />
+			<param name="target_component_id" value="1" />
+			<param name="fcu_protocol" value="v2.0" />
+
+			<!-- load blacklist, config -->
+			<rosparam command="load" file="$(find mavros)/launch/apm_pluginlists.yaml" />
+			<rosparam command="load" file="$(find mavros)/launch/apm_config.yaml" />
+		</node>
+	</group>
+
+	<group ns="nndrone3" if="$(eval number_of_drones > 3 )">	
+		<param name="tf_prefix" value="nndrone2_tf" />
+		<include file="$(find nndrone_swarm)/launch/spawn_drone.launch">
+			<arg name="init_pose" value="-x 0 -y 3.0 -z 0" />
+			<arg name="fdm_port_in" value="9032" />
+			<arg name="fdm_port_out" value="9033" />
+			<arg name="drone_name"  value="nndrone3" />
+		</include>	
+		<node pkg="mavros" type="mavros_node" name="mavros" required="false" clear_params="true" respawn="false" output="screen" >
+			<param name="fcu_url" value="udp://:14581@127.0.0.1:14580" />
+			<param name="gcs_url" value="" />
+			<param name="target_system_id" value="4" />
+			<param name="target_component_id" value="1" />
+			<param name="fcu_protocol" value="v2.0" />
+
+			<!-- load blacklist, config -->
+			<rosparam command="load" file="$(find mavros)/launch/apm_pluginlists.yaml" />
+			<rosparam command="load" file="$(find mavros)/launch/apm_config.yaml" />
+		</node>
+	</group>
+
+	<group ns="nndrone4" if="$(eval number_of_drones > 4 )">	
+		<param name="tf_prefix" value="nndrone4_tf" />
+		<include file="$(find nndrone_swarm)/launch/spawn_drone.launch">
+			<arg name="init_pose" value="-x 0 -y 4.0 -z 0" />
+			<arg name="fdm_port_in" value="9042" />
+			<arg name="fdm_port_out" value="9043" />
+			<arg name="drone_name"  value="nndrone4" />
+		</include>	
+		<node pkg="mavros" type="mavros_node" name="mavros" required="false" clear_params="true" respawn="false" output="screen" >
+			<param name="fcu_url" value="udp://:14591@127.0.0.1:14590" />
+			<param name="gcs_url" value="" />
+			<param name="target_system_id" value="5" />
+			<param name="target_component_id" value="1" />
+			<param name="fcu_protocol" value="v2.0" />
+
+			<!-- load blacklist, config -->
+			<rosparam command="load" file="$(find mavros)/launch/apm_pluginlists.yaml" />
+			<rosparam command="load" file="$(find mavros)/launch/apm_config.yaml" />
+		</node>
+	</group>
+
+	<group ns="nndrone5" if="$(eval number_of_drones > 5 )">	
+		<param name="tf_prefix" value="nndrone5_tf" />
+		<include file="$(find nndrone_swarm)/launch/spawn_drone.launch">
+			<arg name="init_pose" value="-x 0 -y 5.0 -z 0" />
+			<arg name="fdm_port_in" value="9052" />
+			<arg name="fdm_port_out" value="9053" />
+			<arg name="drone_name"  value="nndrone5" />
+		</include>	
+		<node pkg="mavros" type="mavros_node" name="mavros" required="false" clear_params="true" respawn="false" output="screen" >
+			<param name="fcu_url" value="udp://:14611@127.0.0.1:14610" />
+			<param name="gcs_url" value="" />
+			<param name="target_system_id" value="6" />
+			<param name="target_component_id" value="1" />
+			<param name="fcu_protocol" value="v2.0" />
+
+			<!-- load blacklist, config -->
+			<rosparam command="load" file="$(find mavros)/launch/apm_pluginlists.yaml" />
+			<rosparam command="load" file="$(find mavros)/launch/apm_config.yaml" />
+		</node>
+	</group>
+
+</launch>

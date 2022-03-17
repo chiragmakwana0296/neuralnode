@@ -1,6 +1,6 @@
 <launch>
-	    <arg name="fcu_url" default="/dev/ttyAMA0:921600" />
-            <arg name="gcs_url" value="udp://:14551@0.0.0.0:14550" /> 
+   		<arg name="fcu_url" default="udp://:14551@127.0.0.1:14550" />
+        <arg name="gcs_url" value="udp://:14561@0.0.0.0:14560" /> 
 	    <arg name="tgt_system" default="1" />
 	    <arg name="tgt_component" default="1" />
 	    <arg name="log_output" default="screen" />
@@ -19,9 +19,9 @@
 		<arg name="fcu_protocol" value="$(arg fcu_protocol)" />
 		<arg name="respawn_mavros" default="$(arg respawn_mavros)" />
 	</include>
-	<node name="vision_pose_pub_node" pkg="nndrone_mavros" type="vision_pose.py">
+	<!-- <node name="vision_pose_pub_node" pkg="nndrone_mavros" type="vision_pose.py">
 		<remap from="/odom_topic" to="/nndrone/t_camera/odom/sample"/>
         <remap from="/robot_pose" to="/mavros/vision_pose/pose"/>
         <remap from="/robot_vel" to="/mavros/vision_speed/speed_twist"/>
-	</node>
+	</node> -->
 </launch>

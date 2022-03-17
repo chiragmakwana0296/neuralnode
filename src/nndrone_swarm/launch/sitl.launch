@@ -1,0 +1,5 @@
+<launch>
+	<arg name="param_file" default="$(find nndrone_mavros)/param/nndrone_sitl.param" />
+	<node pkg="nndrone_mavros" type="sitl.sh" name="sitl" args="$(arg param_file)" output="screen"/>
+</launch>
+

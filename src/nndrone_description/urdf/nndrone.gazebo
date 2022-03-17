@@ -16,9 +16,9 @@
   <mu2>100000.0</mu2>
   <selfCollide>false</selfCollide>
   <gravity>true</gravity>
-  <max_vel>100.0</max_vel>
+  <!-- <max_vel>100.0</max_vel> -->
   <min_depth>0.001</min_depth>
-  <!-- <dampingFactor>0.02</dampingFactor> -->
+  <dampingFactor>0.003</dampingFactor>
 </gazebo>
 
 <gazebo reference="prop_cw_1">

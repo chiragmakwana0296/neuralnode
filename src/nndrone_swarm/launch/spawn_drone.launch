@@ -1,0 +1,12 @@
+<launch>
+    <arg name="drone_name"/>
+    <arg name="fdm_port_in" default="9002"/>
+    <arg name="fdm_port_out" default="9003"/>
+    <arg name="init_pose"/>
+
+    <param command="$(find xacro)/xacro $(find nndrone_description)/urdf/nndrone.xacro fdm_port_in:=$(arg fdm_port_in) fdm_port_out:=$(arg fdm_port_out)"  name="robot_description"/>
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model $(arg drone_name) $(arg init_pose) " />
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+</launch>
