@@ -1,7 +1,10 @@
 <launch>
-  <arg name="world_name" default="$(find nndrone_description)/world/nndrone_world2.world" />
+<!-- warehouse.world small_city.world -->
+  <arg name="world_name" default="$(find nndrone_description)/world/agriculture_trees.world" /> 
+  <!-- <arg name="world_name" default="small_city.world" />  -->
   <arg name="fdm_port_in" default="9002"/>
   <arg name="fdm_port_out" default="9003"/>
+  <!-- <arg name="init_pose" default="-x -38.401981 -y 0.157499 -z 5.5700000" /> -->
   <arg name="init_pose" default="-x 0 -y 0 -z 0" />
   
   <param command="$(find xacro)/xacro $(find nndrone_description)/urdf/nndrone.xacro fdm_port_in:=$(arg fdm_port_in) fdm_port_out:=$(arg fdm_port_out)"  name="robot_description"/>
@@ -15,4 +18,7 @@
     <arg name="debug" value="false"/>
   </include>
   <include file="$(find nndrone_description)/launch/gzclient.launch"/>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
 </launch>
