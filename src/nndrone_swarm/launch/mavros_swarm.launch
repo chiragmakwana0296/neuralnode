@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 	
 <launch>
-	<arg name="number_of_drones" default="3"/>
+	<arg name="number_of_drones" default="1"/>
 	<arg name="world_name" default="$(find nndrone_description)/world/nndrone_world2.world" />	
 	<include file="$(find nndrone_description)/launch/gzserver.launch">
 		<arg name="paused" value="false"/>
 		<arg name="use_sim_time" value="true"/>
 		<arg name="headless" value="false"/>
-		<arg name="world_name" value="$(arg world_name)" />
+		<!-- <arg name="world_name" value="$(arg world_name)" /> -->
 		<arg name="debug" value="false"/>
 	</include>
   	
